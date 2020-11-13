@@ -1,18 +1,16 @@
 <head>
     <meta charset="utf-8">
+
+    {% include seo.html %}
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="description" content="{{ site.description }}">
     <meta name="keywords"  content="{{ site.keyword }}">
     <meta name="theme-color" content="{{ site.chrome-tab-theme-color }}">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="{% if page.title %}{{ page.title }} - {{ site.SEOTitle }}{% else %}{{ site.SEOTitle }}{% endif %}">
     {% case page.layout %}
     {% when 'post' %}
-    <meta property="og:type" content="article">
-    <meta property="og:description" content="{{ page.excerpt | strip_html | truncate:200 }}">
     {% if page.date %}
     <meta property="article:published_time" content="{{ page.date | date: "%Y-%m-%dT%H:%M:%SZ" }}">
     {% endif %}
@@ -26,9 +24,11 @@
     <meta property="og:type" content="website">
     <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
     {% endcase %}
+    {% if page.header-img %}
+    <meta property="og:image" content="{{ site.url }}/{{ page.header-img }}">
+    {% else %}
     <meta property="og:image" content="{{ site.url }}{{ site.sidebar-avatar }}">
-    <meta property="og:url" content="{{ site.url }}{{ page.url }}">
-    <meta property="og:site_name" content="{{ site.SEOTitle }}">
+    {% endif %}
     
     <title>{% if page.title %}{{ page.title }} - {{ site.SEOTitle }}{% else %}{{ site.SEOTitle }}{% endif %}</title>
 

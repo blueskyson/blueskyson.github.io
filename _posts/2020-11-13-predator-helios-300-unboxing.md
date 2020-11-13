@@ -1,6 +1,7 @@
 ---
 title: "Predator Helios 300 開箱"
-subtitle: ""
+subtitle: "PH315-53-79EB 2020 model"
+excerpt: "Predator Helios 300"
 layout: post
 author: "blueskyson"
 header-img: "img/Predator-Helios-300-lifestyle_3.jpg"
