@@ -1240,7 +1240,7 @@ samp {
   bottom: 6px;
   right: 9px;
   color: white;
-  opacity: 0.3;
+  opacity: 1;
   font-size: 10px;
   z-index: 1;
 }
