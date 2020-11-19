@@ -5,7 +5,7 @@ layout: post
 author: "blueskyson"
 header-style: text
 tags:
-  - hadoop
+  - apache
 ---
 
 最近正在學習 Hadoop，發現 Hadoop 的安裝過程繁瑣，每個人的裝置又可能產生不一樣的問題，且中文資源較少，所以想好好寫個筆記紀錄一下，未來安裝 Hadoop 時可以參考，同時也希望能幫助新手

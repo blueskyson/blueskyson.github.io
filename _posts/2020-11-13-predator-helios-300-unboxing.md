@@ -106,7 +106,7 @@ B C 面外觀，右下角的貼紙原本是黑色的，但是打字時，手掌�
 
 遊戲同步頁面就是比較雞肋的功能，主要就是開啟遊戲執行檔時，套用一些 GPU、風扇、RTX 顯卡的設定，我從來沒用過。
 
-應用程式管理和 windows 設定裡的 "應用程式與功能類似" ，比較值得一提的是: 這台機子已經預先裝好 PhotoDirector for acer 和 PowerDirector for acer ，可以不用額外安裝其他軟體，還蠻方便的，不過有些功能被鎖起來了。
+應用程式管理和 windows 設定裡的 "應用程式與功能類似" ，比較值得一提的是: 這台機子已經預先裝好 PhotoDirector for acer 和 PowerDirector for acer ，可以不用額外下載其他影音軟體，還蠻方便的，不過有些功能被鎖起來了。
 
 ![](https://raw.githubusercontent.com/blueskyson/image-host/master/unboxpredator/predatorsense1.png)
 
