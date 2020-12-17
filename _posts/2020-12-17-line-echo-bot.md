@@ -85,3 +85,65 @@ Connections                   ttl     opn     rt1     rt5     p50     p90
 確認功能沒問題後，我們就能把程式推送到 Heroku ，不過現在時間很晚了，改天有空再更新吧!
 
 ## Step 4:
+
+回到 Heroku 的網頁，點選 **New** 然後選擇 **Create new app** ，然後我將 app 名稱設為 testlinebott
+![](https://raw.githubusercontent.com/blueskyson/image-host/master/line-echo-bot/10.png)
+接下來我們讓 heroku-cli 將 git 連結到 app server
+```non
+> heroku git:remote -a testlinebott
+```
+接下來需要稍微修改 `app.py` 的主程式，使其能在 heroku 運作:
+```python
+. . .
+
+if __name__ == "__main__":
+    arg_parser = ArgumentParser(
+        usage='Usage: python ' + __file__ + ' [--port <port>] [--help]'
+    )
+    # --- original code ---
+    # arg_parser.add_argument('-p', '--port', type=int, default=8000, help='port')
+    # arg_parser.add_argument('-d', '--debug', default=False, help='debug')
+    # options = arg_parser.parse_args()
+    # app.run(debug=options.debug, port=options.port)
+    
+    # --- new code ---
+    http_port = int(os.environ.get("PORT", 8000))
+    app.run(host='0.0.0.0', port=http_port)
+```
+在 github repo 新增一個檔案叫 `Procfile` ，這個檔案會告訴 heroku 要執行甚麼程序，內容如下:
+```non
+> type Procfile
+web: python app.py
+```
+現在我們的 repo 應該會有 3 個檔案:
+```non
+> dir
+2020/12/17  上午 11:08    <DIR>          .
+2020/12/17  上午 11:08    <DIR>          ..
+2020/12/17  上午 11:15             2,530 app.py
+2020/08/12  下午 11:27                18 Procfile
+2020/12/17  上午 01:57                19 requirements.txt
+```
+將所有檔案推送到 heroku 之前，先設定 heroku 主機的環境變數
+```non
+> heroku config:set LINE_CHANNEL_SECRET=c6548765346daf44929813e1236ade9f
+> heroku config:set LINE_CHANNEL_ACCESS_TOKEN=ODWoxIDTCoxZ/2jxLRtqFhGxYDvtL2g2ZoPfceKv1AdSG+jtrE38CNY/Wz14Zj+NdJ4f5WMMi8re70KRuNRa0lFHxHYauoqzRPG9eX56zOFOUaA43Ebt3AjVOWKsxBB3o9dQjr9YUlbl9L0nUye69QdB04t89/1O/w1cDnyilFU=
+> heroku config:set PORT=8000
+```
+將程式碼推送到 heroku
+```non
+> git add .
+> git commit -m "first commit"
+> git push heroku master
+```
+在 heroku 複製 app server 的網址
+![](https://raw.githubusercontent.com/blueskyson/image-host/master/line-echo-bot/11.png)
+回到 LINE Developers 將 webhook 的網址改為 heroku app 的網址，後面記得要加 '\callback'
+![](https://raw.githubusercontent.com/blueskyson/image-host/master/line-echo-bot/12.png)
+如此一來便部屬完成!
+
+如果機器人沒有正常運作，可以參考 heroku 的 logs 查看發生甚麼問題
+```non
+> heroku logs
+```
+如果 logs 顯示 **Build succeeded** 但是沒有正常回應，也許是 Procfile 沒有設定
