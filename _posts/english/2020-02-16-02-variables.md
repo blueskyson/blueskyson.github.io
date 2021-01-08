@@ -4,6 +4,7 @@ subtitle: ""
 layout: post
 author: "blueskyson"
 header-style: text
+mathjax: true
 tags:
   - en
   - c++
