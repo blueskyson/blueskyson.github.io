@@ -80,6 +80,7 @@ $ \\ S_0 \quad \quad \quad S_1 \quad \quad \quad \quad \quad \quad \quad \quad \
 $ \\ \quad S_0 \quad \quad \quad \quad \quad \quad \quad S_1 \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad S_2 \\\\ \\{\color{red}10,\\ \color{red}11\\},\\ \\{0\color{red}100,\\ 0\color{red}101,\\ 0\color{red}110,\\ 0\color{red}111\\},\\ \\{00\color{red}1000,\\ 00\color{red}1001,\\ 00\color{red}1010,\\  ... \\\\ G_{0,0} \\ \\ G_{0,1} \quad \\ G_{1,0} \quad G_{1,1} \quad G_{1,2} \quad G_{1,3} \quad \quad G_{3,0} \quad \quad \\ G_{3,1} \quad \quad G_{3,2}$
 
 **order-2**
+
 $ \\ \quad S_0 \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad S_1 \\\\ \\{\color{red}100,\\ \color{red}101,\\ \color{red}110,\\ \color{red}111\\},\\ \\{0\color{red}1000,\\ 0\color{red}1001,\\ 0\color{red}1010,\\ 0\color{red}1011,\\ 0\color{red}1100,\\ 0\color{red}1101,\\ 0\color{red}1110,\\ 0\color{red}1111\\},\\ ...\\\\ G_{0,0} \\ \\ \\ G_{0,1} \\ \\ G_{0,2} \\ \\ G_{0,3} \quad \\ \\ \\  G_{1,0} \quad \\ \\ G_{1,1} \quad \\ \\ G_{1,2} \quad \\ \\ G_{1,3} \quad \\ \\ G_{1, 4} \quad \\ \\ G_{1, 5} \quad \\ \\ G_{1, 6} \quad \\ G_{1, 7}$
 
 產生 $k$ 階 Exp-Golomb code 的步驟為:
