@@ -1,0 +1,169 @@
+<div class="container" id="notebook-container">
+    <div class="cell border-box-sizing code_cell rendered">
+        <div class="input">
+            <div class="prompt input_prompt">In&nbsp;[26]:</div>
+            <div class="inner_cell">
+                <div class="input_area">
+            <div class=" highlight hl-ipython3"><pre><span></span><span class="n">all_country_df</span> <span class="o">=</span> <span class="n">country_df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;date == @target_date&#39;</span><span class="p">)</span>
+<span class="n">all_country_df</span><span class="p">[</span><span class="s1">&#39;confirmed_log1p&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">all_country_df</span><span class="p">[</span><span class="s1">&#39;confirmed&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">all_country_df</span><span class="p">[</span><span class="s1">&#39;fatalities_log1p&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">all_country_df</span><span class="p">[</span><span class="s1">&#39;fatalities&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">all_country_df</span><span class="p">[</span><span class="s1">&#39;mortality_rate&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">all_country_df</span><span class="p">[</span><span class="s1">&#39;fatalities&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">all_country_df</span><span class="p">[</span><span class="s1">&#39;confirmed&#39;</span><span class="p">]</span>
+<span class="n">all_country_df</span></pre></div>
+                </div>
+            </div>
+            </div>
+            <div class="output_wrapper">
+            <div class="output">
+            <div class="output_area">
+                <div class="prompt output_prompt">Out[26]:</div>
+            <div class="output_html rendered_html output_subarea output_execute_result">
+            <div>
+            <style scoped>
+                .dataframe tbody tr th:only-of-type {
+                    vertical-align: middle;
+                }
+            
+                .dataframe tbody tr th {
+                    vertical-align: top;
+                }
+            
+                .dataframe thead th {
+                    text-align: right;
+                }
+            </style>
+            <table border="1" class="dataframe">
+              <thead>
+                <tr style="text-align: right;">
+                  <th></th>
+                  <th>date</th>
+                  <th>country</th>
+                  <th>confirmed</th>
+                  <th>fatalities</th>
+                  <th>confirmed_log1p</th>
+                  <th>fatalities_log1p</th>
+                  <th>mortality_rate</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>72000</th>
+                  <td>2021-01-31</td>
+                  <td>Afghanistan</td>
+                  <td>55023</td>
+                  <td>2400</td>
+                  <td>4.740552</td>
+                  <td>3.380392</td>
+                  <td>0.043618</td>
+                </tr>
+                <tr>
+                  <th>72001</th>
+                  <td>2021-01-31</td>
+                  <td>Albania</td>
+                  <td>78127</td>
+                  <td>1380</td>
+                  <td>4.892807</td>
+                  <td>3.140194</td>
+                  <td>0.017664</td>
+                </tr>
+                <tr>
+                  <th>72002</th>
+                  <td>2021-01-31</td>
+                  <td>Algeria</td>
+                  <td>107339</td>
+                  <td>2891</td>
+                  <td>5.030762</td>
+                  <td>3.461198</td>
+                  <td>0.026933</td>
+                </tr>
+                <tr>
+                  <th>72003</th>
+                  <td>2021-01-31</td>
+                  <td>Andorra</td>
+                  <td>9937</td>
+                  <td>101</td>
+                  <td>3.997299</td>
+                  <td>2.008600</td>
+                  <td>0.010164</td>
+                </tr>
+                <tr>
+                  <th>72004</th>
+                  <td>2021-01-31</td>
+                  <td>Angola</td>
+                  <td>19796</td>
+                  <td>466</td>
+                  <td>4.296599</td>
+                  <td>2.669317</td>
+                  <td>0.023540</td>
+                </tr>
+                <tr>
+                  <th>...</th>
+                  <td>...</td>
+                  <td>...</td>
+                  <td>...</td>
+                  <td>...</td>
+                  <td>...</td>
+                  <td>...</td>
+                  <td>...</td>
+                </tr>
+                <tr>
+                  <th>72187</th>
+                  <td>2021-01-31</td>
+                  <td>Vietnam</td>
+                  <td>1817</td>
+                  <td>35</td>
+                  <td>3.259594</td>
+                  <td>1.556303</td>
+                  <td>0.019263</td>
+                </tr>
+                <tr>
+                  <th>72188</th>
+                  <td>2021-01-31</td>
+                  <td>West Bank and Gaza</td>
+                  <td>158962</td>
+                  <td>1833</td>
+                  <td>5.201296</td>
+                  <td>3.263399</td>
+                  <td>0.011531</td>
+                </tr>
+                <tr>
+                  <th>72189</th>
+                  <td>2021-01-31</td>
+                  <td>Yemen</td>
+                  <td>2121</td>
+                  <td>615</td>
+                  <td>3.326745</td>
+                  <td>2.789581</td>
+                  <td>0.289958</td>
+                </tr>
+                <tr>
+                  <th>72190</th>
+                  <td>2021-01-31</td>
+                  <td>Zambia</td>
+                  <td>54217</td>
+                  <td>763</td>
+                  <td>4.734143</td>
+                  <td>2.883093</td>
+                  <td>0.014073</td>
+                </tr>
+                <tr>
+                  <th>72191</th>
+                  <td>2021-01-31</td>
+                  <td>Zimbabwe</td>
+                  <td>33388</td>
+                  <td>1217</td>
+                  <td>4.523603</td>
+                  <td>3.085647</td>
+                  <td>0.036450</td>
+                </tr>
+              </tbody>
+            </table>
+            <p>192 rows × 7 columns</p>
+            </div>
+            </div>
+            
+            </div>
+            
+            </div>
+            </div>
+    </div>
+</div>

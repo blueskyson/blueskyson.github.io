@@ -1,0 +1,36 @@
+<div class="container" id="notebook-container">
+    <div class="input">
+        <div class="prompt input_prompt">In&nbsp;[19]:</div>
+        <div class="inner_cell">
+            <div class="input_area">
+                <div class=" highlight hl-ipython3">
+                    <pre><span></span><span class="n">target_date</span> <span class="o">=</span> <span class="n">country_df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+        
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Date: &#39;</span><span class="p">,</span> <span class="n">target_date</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">10000</span><span class="p">,</span> <span class="mi">100000</span><span class="p">,</span> <span class="mi">1000000</span><span class="p">,</span> <span class="mi">10000000</span><span class="p">]:</span>
+    <span class="n">n_countries</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">country_df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;(date == @target_date) &amp; confirmed &gt; @i&#39;</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">n_countries</span><span class="si">}</span><span class="s1"> countries have more than </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1"> confirmed cases&#39;</span><span class="p">)</span></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="output_wrapper">
+        <div class="output">
+            <div class="output_area">
+                <div class="prompt"></div>
+                <div class="output_subarea output_stream output_stdout output_text">
+                    <pre>Date:  2021-01-31
+190 countries have more than 1 confirmed cases
+187 countries have more than 10 confirmed cases
+181 countries have more than 100 confirmed cases
+169 countries have more than 1000 confirmed cases
+132 countries have more than 10000 confirmed cases
+82 countries have more than 100000 confirmed cases
+19 countries have more than 1000000 confirmed cases
+2 countries have more than 10000000 confirmed cases</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

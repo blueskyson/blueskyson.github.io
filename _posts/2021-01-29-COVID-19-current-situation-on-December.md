@@ -1,5 +1,5 @@
 ---
-title: "COVID-19: current situation on December (從 Kaggle Notebook 翻譯)"
+title: "肺炎疫情 (COVID-19) 到 2020 年 12 月的現狀 (自 Kaggle Notebook 翻譯)"
 subtitle: ""
 excerpt: "COVID-19 python data science"
 layout: post
@@ -11,11 +11,11 @@ tags:
   - python
 ---
 
-來源: [https://www.kaggle.com/corochann/covid-19-current-situation-on-december/notebook](https://www.kaggle.com/corochann/covid-19-current-situation-on-december/notebook)
+來源: [https://www.kaggle.com/corochann/covid-19-current-situation-on-december/notebook](https://www.kaggle.com/corochann/covid-19-current-situation-on-december/notebook)  
+此筆記的資料集來源: [Johns Hopkins University github repository](https://github.com/CSSEGISandData/COVID-19)  
+最後更新: 2021-02-01
 
-此筆記的資料集來源: [Johns Hopkins University github repository](https://github.com/CSSEGISandData/COVID-19)
-
-主要重點:
+## 主要重點
 
 1. [**綜觀全球疫情走勢**](#綜觀全球疫情走勢)
     - 以 `折線圖` 分析
@@ -93,5 +93,97 @@ pip install -r requirements.txt
 - 2020/07/28 確診人數突破 10M，且死亡人數為 500K
 - 2020/08/13 確診人數突破 20M，且死亡人數為 750K
 - 2020/11/08 確診人數突破 50M，且死亡人數為 1.25M
+
+{% include notebooks/COVID-19-current-situation-on-December/9.html %}
+
+### 全球確診/死亡案例 (折線圖) (取對數)
+
+如果某段期間為斜直線，代表該段期間的案例為指數增長  
+比較 2020/3 初和 2020/3 底，確診案例成長率的上升速度略為增加
+
+{% include notebooks/COVID-19-current-situation-on-December/10.html %}
+
+### 全球死亡率 (折線圖)
+
+可以明顯看到，死亡率在 2020 年 5 月達到高峰 (7%)，隨後開始下降，可能是因為醫療能量慢慢提升，或是更多潛在患者確診?
+
+{% include notebooks/COVID-19-current-situation-on-December/11.html %}
+
+### 計算全球新增確診案例成長因子 (折線圖)
+
+公式: 每日新增確診案例 / 昨日新增確診案例
+- 大於1: 確診案例增加
+- 小於1: 確診案例減少
+
+{% include notebooks/COVID-19-current-situation-on-December/12.html %}
+
+## 分析各國確診與死亡人數變化
+
+宣告 `country_df` 條列各國確診與死亡人數，並查看 `country_df` 的各個欄位
+
+{% include notebooks/COVID-19-current-situation-on-December/13.html %}
+
+列出 dataset 的所有國家 (注意，台灣的標籤為 *Taiwan\** )
+
+{% include notebooks/COVID-19-current-situation-on-December/14.html %}
+
+列出所有國家確診案例的數量級
+
+{% include notebooks/COVID-19-current-situation-on-December/15.html %}
+
+以柱狀圖表示
+
+{% include notebooks/COVID-19-current-situation-on-December/16.html %}
+
+### 目前各國確診/死亡案例 (柱狀圖)
+
+將各國的資料根據確診數排序，排除確診人數小於 1000 的國家 (此時台灣確診 911、 死亡 8)，存在 `top_country_df`  
+下文確診案例、死亡案例、死亡率也一樣排除確診人數小於 1000 的國家
+
+{% include notebooks/COVID-19-current-situation-on-December/17.html %}
+
+### 目前確診案例前 10 多的國家 (折線圖)
+
+{% include notebooks/COVID-19-current-situation-on-December/18.html %}
+
+### 目前死亡案例前 10 多的國家 (折線圖)
+
+{% include notebooks/COVID-19-current-situation-on-December/19.html %}
+
+### 目前死亡率最高的前 30 個國家 (柱狀圖)
+
+{% include notebooks/COVID-19-current-situation-on-December/20.html %}
+
+### 目前死亡率最低的前 30 個國家 (柱狀圖)
+
+{% include notebooks/COVID-19-current-situation-on-December/21.html %}
+
+宣告 `all_country_df` 紀錄每個國家最近一天的疫情資訊，並新增以下欄位:
+- 計算各國確診數的對數，記為 `confirmed_log1p`
+- 計算各國確診數的對數，記為 `fatalities_log1p`
+- 計算各國死亡率，記為 `mortality_rate`
+
+{% include notebooks/COVID-19-current-situation-on-December/22.html %}
+
+### 各國確診案例比較 (動態全球地圖) (以顏色區分等級)
+
+顏色越深代表確診案例越多；反之則越少
+
+{% include notebooks/COVID-19-current-situation-on-December/23.html %}
+
+### 各國死亡案例比較 (動態全球地圖) (以顏色區分等級)
+
+顏色越深代表死亡數越多；反之則越少
+
+{% include notebooks/COVID-19-current-situation-on-December/24.html %}
+
+### 各國死亡率比較 (動態全球地圖) (以顏色區分等級)
+
+顏色越深代表死亡率越高；反之則越低
+
+{% include notebooks/COVID-19-current-situation-on-December/25.html %}
+
+
+此時文中提到歐美澳的死亡率特別高，並提到一項假設是卡介苗在這些國家的接種率很高，也許跟卡介苗注射有關。不過考慮到這篇文章大概在 2020 年 5 到 6 月就有了，那時歐美的死亡率可能真的比較高，現在 (2021 年 2 月) 來看，歐美其實死亡率並沒有比較高。
 
 待續...

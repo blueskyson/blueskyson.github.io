@@ -1,0 +1,31 @@
+<div class="container" id="notebook-container">
+    <div class="cell border-box-sizing code_cell rendered">
+        <div class="input">
+            <div class="prompt input_prompt">In&nbsp;[96]:</div>
+            <div class="inner_cell">
+                <div class="input_area">
+            <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">choropleth</span><span class="p">(</span><span class="n">all_country_df</span><span class="p">,</span> <span class="n">locations</span><span class="o">=</span><span class="s2">&quot;country&quot;</span><span class="p">,</span> 
+                    <span class="n">locationmode</span><span class="o">=</span><span class="s1">&#39;country names&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;confirmed_log1p&quot;</span><span class="p">,</span> 
+                    <span class="n">hover_name</span><span class="o">=</span><span class="s2">&quot;country&quot;</span><span class="p">,</span> <span class="n">hover_data</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;confirmed&quot;</span><span class="p">],</span>
+                    <span class="n">range_color</span><span class="o">=</span><span class="p">[</span><span class="n">all_country_df</span><span class="p">[</span><span class="s1">&#39;confirmed_log1p&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">all_country_df</span><span class="p">[</span><span class="s1">&#39;confirmed_log1p&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()],</span> 
+                    <span class="n">color_continuous_scale</span><span class="o">=</span><span class="s2">&quot;peach&quot;</span><span class="p">,</span> 
+                    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Countries with Confirmed Cases&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></pre></div>
+            
+                </div>
+            </div>
+        </div>
+        <div class="output_wrapper">
+            <div class="output">
+                <div class="output_area">
+                    <div class="prompt"></div>
+                    <div class="output_html rendered_html output_subarea ">
+                        <iframe id="igraph" scrolling="no" style="border:none;" seamless="seamless"
+                            src="https://plotly.com/~blueskyson1401/28.embed?autosize=true" height="525"
+                            width="100%"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

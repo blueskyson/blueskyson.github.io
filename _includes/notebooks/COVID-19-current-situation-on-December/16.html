@@ -1,0 +1,24 @@
+<div class="container" id="notebook-container">
+    <div class="input">
+        <div class="prompt input_prompt">In&nbsp;[20]:</div>
+        <div class="inner_cell">
+            <div class="input_area">
+                <div class=" highlight hl-ipython3">
+                    <pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">country_df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;date == @target_date&#39;</span><span class="p">)[</span><span class="s1">&#39;confirmed&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span>
+<span class="n">dist_plot</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([</span><span class="s1">&#39;10&#39;</span><span class="p">,</span> <span class="s1">&#39;100&#39;</span><span class="p">,</span> <span class="s1">&#39;1k&#39;</span><span class="p">,</span> <span class="s1">&#39;10k&#39;</span><span class="p">,</span> <span class="s1">&#39;100k&#39;</span><span class="p">,</span> <span class="s1">&#39;1M&#39;</span><span class="p">,</span> <span class="s1">&#39;10M&#39;</span><span class="p">])</span></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="output_wrapper">
+        <div class="output">
+            <div class="output_area">
+                <img src="https://raw.githubusercontent.com/blueskyson/image-host/master/confirmed.png">
+            </div>
+        </div>
+    </div>
+</div>
