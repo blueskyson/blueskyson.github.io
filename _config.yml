@@ -52,15 +52,11 @@ kramdown:
       line_numbers: true
       start_line: 1
 
-
-
 # Disqus settings
 disqus_username: blueSkyson
 
 # Netease settings
 netease_comment: false
-
-
 
 # Analytics settings
 # Baidu Analytics 
@@ -71,30 +67,21 @@ netease_comment: false
 # ga_domain: huangxuan.me
 google_site_verification: "me-pg4sHXz3RiwcnxRxO-U1c9ILdDC2N1_tsHcLnriI"
 
-
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
 sidebar-about-description: "我太難了"
 sidebar-avatar: /img/avatar.png         # use absolute URL, seeing it's used in both `/` and `/about/`
 
-
-
 # Featured Tags
 featured-tags: true                     # whether or not using Feature-Tags
 featured-condition-size: 1              # A tag will be featured if the size of it is more than this condition value
-
-
 
 # Progressive Web Apps
 chrome-tab-theme-color: "#000000"
 service-worker: true
 
-
-
 # MathJax rendering for layout:page (e.g. post preview)
 page-mathjax: false
-
-
 
 # Friends
 friends: [

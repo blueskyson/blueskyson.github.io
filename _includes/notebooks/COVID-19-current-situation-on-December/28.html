@@ -1,0 +1,21 @@
+<div class="container" id="notebook-container">
+    <div class="cell border-box-sizing code_cell rendered">
+        <div class="input">
+            <div class="prompt input_prompt">In&nbsp;[32]:</div>
+            <div class="inner_cell">
+                <div class="input_area">
+            <div class=" highlight hl-ipython3"><pre><span></span><span class="n">country_df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">country_df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<span class="n">country_df</span><span class="p">[</span><span class="s1">&#39;confirmed_log1p&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log1p</span><span class="p">(</span><span class="n">country_df</span><span class="p">[</span><span class="s1">&#39;confirmed&#39;</span><span class="p">])</span>
+<span class="n">country_df</span><span class="p">[</span><span class="s1">&#39;fatalities_log1p&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log1p</span><span class="p">(</span><span class="n">country_df</span><span class="p">[</span><span class="s1">&#39;fatalities&#39;</span><span class="p">])</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">scatter_geo</span><span class="p">(</span><span class="n">country_df</span><span class="p">,</span> <span class="n">locations</span><span class="o">=</span><span class="s2">&quot;country&quot;</span><span class="p">,</span> <span class="n">locationmode</span><span class="o">=</span><span class="s1">&#39;country names&#39;</span><span class="p">,</span> 
+                      <span class="n">color</span><span class="o">=</span><span class="s2">&quot;confirmed&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s1">&#39;confirmed&#39;</span><span class="p">,</span> <span class="n">hover_name</span><span class="o">=</span><span class="s2">&quot;country&quot;</span><span class="p">,</span> 
+                      <span class="n">hover_data</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;confirmed&#39;</span><span class="p">,</span> <span class="s1">&#39;fatalities&#39;</span><span class="p">],</span>
+                      <span class="n">range_color</span><span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">country_df</span><span class="p">[</span><span class="s1">&#39;confirmed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()],</span> 
+                      <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;natural earth&quot;</span><span class="p">,</span> <span class="n">animation_frame</span><span class="o">=</span><span class="s2">&quot;date&quot;</span><span class="p">,</span> 
+                      <span class="n">title</span><span class="o">=</span><span class="s1">&#39;COVID-19: Confirmed cases spread Over Time&#39;</span><span class="p">,</span> <span class="n">color_continuous_scale</span><span class="o">=</span><span class="s2">&quot;portland&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></pre></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

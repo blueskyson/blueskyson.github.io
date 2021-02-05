@@ -1,0 +1,38 @@
+<div class="container" id="notebook-container">
+    <div class="cell border-box-sizing code_cell rendered">
+        <div class="input">
+            <div class="prompt input_prompt">In&nbsp;[33]:</div>
+            <div class="inner_cell">
+                <div class="input_area">
+            <div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">country</span> <span class="ow">in</span> <span class="n">countries</span><span class="p">:</span>
+    <span class="n">province</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;country == @country&#39;</span><span class="p">)[</span><span class="s1">&#39;province&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">province</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>       
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Country </span><span class="si">{</span><span class="n">country</span><span class="si">}</span><span class="s1"> has </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">province</span><span class="p">)</span><span class="si">}</span><span class="s1"> provinces: </span><span class="si">{</span><span class="n">province</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></pre></div>
+                </div>
+            </div>
+            </div>
+            <div class="output_wrapper">
+            <div class="output">
+            <div class="output_area">
+                <div class="prompt"></div>
+            <div class="output_subarea output_stream output_stdout output_text">
+            <pre>Country Australia has 8 provinces: [&#39;Australian Capital Territory&#39; &#39;New South Wales&#39; &#39;Northern Territory&#39; &#39;Queensland&#39; &#39;South Australia&#39; &#39;Tasmania&#39; &#39;Victoria&#39; &#39;Western Australia&#39;]
+
+Country Canada has 14 provinces: [&#39;Alberta&#39; &#39;British Columbia&#39; &#39;Manitoba&#39; &#39;New Brunswick&#39; &#39;Newfoundland and Labrador&#39; &#39;Northwest Territories&#39; &#39;Nova Scotia&#39; &#39;Nunavut&#39; &#39;Ontario&#39; &#39;Prince Edward Island&#39; &#39;Quebec&#39; &#39;Repatriated Travellers&#39; &#39;Saskatchewan&#39; &#39;Yukon&#39;]
+
+Country China has 33 provinces: [&#39;Anhui&#39; &#39;Beijing&#39; &#39;Chongqing&#39; &#39;Fujian&#39; &#39;Gansu&#39; &#39;Guangdong&#39; &#39;Guangxi&#39; &#39;Guizhou&#39; &#39;Hainan&#39; &#39;Hebei&#39; &#39;Heilongjiang&#39; &#39;Henan&#39; &#39;Hong Kong&#39; &#39;Hubei&#39; &#39;Hunan&#39; &#39;Inner Mongolia&#39; &#39;Jiangsu&#39; &#39;Jiangxi&#39; &#39;Jilin&#39; &#39;Liaoning&#39; &#39;Macau&#39; &#39;Ningxia&#39; &#39;Qinghai&#39; &#39;Shaanxi&#39; &#39;Shandong&#39; &#39;Shanghai&#39; &#39;Shanxi&#39; &#39;Sichuan&#39; &#39;Tianjin&#39; &#39;Tibet&#39; &#39;Xinjiang&#39; &#39;Yunnan&#39; &#39;Zhejiang&#39;]
+
+Country Denmark has 3 provinces: [&#39;Faroe Islands&#39; &#39;Greenland&#39; nan]
+
+Country France has 12 provinces: [&#39;French Guiana&#39; &#39;French Polynesia&#39; &#39;Guadeloupe&#39; &#39;Martinique&#39; &#39;Mayotte&#39; &#39;New Caledonia&#39; &#39;Reunion&#39; &#39;Saint Barthelemy&#39; &#39;Saint Pierre and Miquelon&#39; &#39;St Martin&#39; &#39;Wallis and Futuna&#39; nan]
+
+Country Netherlands has 5 provinces: [&#39;Aruba&#39; &#39;Bonaire, Sint Eustatius and Saba&#39; &#39;Curacao&#39; &#39;Sint Maarten&#39; nan]
+
+Country US has 54 provinces: [&#39;Alabama&#39; &#39;Alaska&#39; &#39;Arizona&#39; &#39;Arkansas&#39; &#39;California&#39; &#39;Colorado&#39; &#39;Connecticut&#39; &#39;Delaware&#39; &#39;District of Columbia&#39; &#39;Florida&#39; &#39;Georgia&#39; &#39;Guam&#39; &#39;Hawaii&#39; &#39;Idaho&#39; &#39;Illinois&#39; &#39;Indiana&#39; &#39;Iowa&#39; &#39;Kansas&#39; &#39;Kentucky&#39; &#39;Louisiana&#39; &#39;Maine&#39; &#39;Maryland&#39; &#39;Massachusetts&#39; &#39;Michigan&#39; &#39;Minnesota&#39; &#39;Mississippi&#39; &#39;Missouri&#39; &#39;Montana&#39; &#39;Nebraska&#39; &#39;Nevada&#39; &#39;New Hampshire&#39; &#39;New Jersey&#39; &#39;New Mexico&#39; &#39;New York&#39; &#39;North Carolina&#39; &#39;North Dakota&#39; &#39;Ohio&#39; &#39;Oklahoma&#39; &#39;Oregon&#39; &#39;Pennsylvania&#39; &#39;Puerto Rico&#39; &#39;Rhode Island&#39; &#39;South Carolina&#39; &#39;South Dakota&#39; &#39;Tennessee&#39; &#39;Texas&#39; &#39;Utah&#39; &#39;Vermont&#39; &#39;Virgin Islands&#39; &#39;Virginia&#39; &#39;Washington&#39; &#39;West Virginia&#39; &#39;Wisconsin&#39; &#39;Wyoming&#39;]
+
+Country United Kingdom has 11 provinces: [&#39;Anguilla&#39; &#39;Bermuda&#39; &#39;British Virgin Islands&#39; &#39;Cayman Islands&#39; &#39;Channel Islands&#39; &#39;Falkland Islands (Malvinas)&#39; &#39;Gibraltar&#39; &#39;Isle of Man&#39; &#39;Montserrat&#39; &#39;Turks and Caicos Islands&#39; nan]</pre></div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>

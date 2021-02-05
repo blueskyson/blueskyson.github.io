@@ -2,11 +2,13 @@
   .post-container,
   .sidebar-container {
     padding-right: 5%;
+    padding-left: 10px
   }
 }
 @media (min-width: 768px) {
   .post-container {
     padding-right: 5%;
+    padding-left: 5px
   }
 }
 .sidebar-container {

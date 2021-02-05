@@ -29,11 +29,11 @@ tags:
 5. [**分析歐洲疫情**](#分析歐洲疫情)
     - 以 `顏色指標歐洲動態地圖`、`顏色指標折線圖`、`顏色指標熱圖` 分析
 6. [**分析亞洲疫情**](#分析亞洲疫情)
-    - 額外把台灣加在裡面
     - 以 `顏色指標亞洲動態地圖`、`顏色指標折線圖`、`顏色指標熱圖` 分析
-7. [**哪些國家目前沒有新增案例**](#哪些國家目前沒有新增案例)
-    - 以 `表格`、`柱狀圖`、`顏色指標全球動態地圖`、`顏色指標熱圖` 分析
+7. [**哪些國家已經脫離疫情高峰**](#哪些國家已經脫離疫情高峰)
+    - 以 `顏色指標全球動態地圖` 分析
 8. [**全球疫情何時趨緩**](#全球疫情何時趨緩)
+    - 使用 sigmoid 函數預測
     - 以 `顏色指標折線圖` 分析
 
 ### 安裝
@@ -183,7 +183,71 @@ pip install -r requirements.txt
 
 {% include notebooks/COVID-19-current-situation-on-December/25.html %}
 
-
 此時文中提到歐美澳的死亡率特別高，並提到一項假設是卡介苗在這些國家的接種率很高，也許跟卡介苗注射有關。不過考慮到這篇文章大概在 2020 年 5 到 6 月就有了，那時歐美的死亡率可能真的比較高，現在 (2021 年 2 月) 來看，歐美其實死亡率並沒有比較高。
+
+### 死亡數演變 (折線圖) (取log) (超過 10 人死亡就開始記錄)
+
+可以由這張圖比較各國的防疫能力 (醫療資源較充足、較早開始處理疫情的國家，曲線上升幅度會較緩慢)
+
+{% include notebooks/COVID-19-current-situation-on-December/26.html %}
+
+### 確診人數前十國每日新增確診案例 (折線圖)
+
+{% include notebooks/COVID-19-current-situation-on-December/27.html %}
+
+### 各國疫情發展情況: 確診案例 (點狀動態圖)
+
+{% include notebooks/COVID-19-current-situation-on-December/28.html %}
+
+由於所需的數據大於 512 KB ，超過 chart-stdio 的上限，這裡僅放截圖:
+
+![](https://raw.githubusercontent.com/blueskyson/image-host/master/world-covid19-progress.png)
+
+## 各國省分詳細資訊
+
+提供詳細省分詳細資訊的僅有 8 個國家:  
+Australia, Canada, China, Denmark, France, Netherlands, US, UK
+
+{% include notebooks/COVID-19-current-situation-on-December/29.html %}
+
+## 分析美國疫情
+
+因為需要額外登入到 kaggle 下載資料，我就不搬運了，有興趣的可以看[這裡](https://www.kaggle.com/corochann/covid-19-current-situation-on-december/comments#Zoom-up-to-US:-what-is-happening-in-US-now??)
+
+## 分析歐洲疫情
+
+{% include notebooks/COVID-19-current-situation-on-December/30.html %}
+
+### 歐洲國家確診案例 (折線圖)
+
+{% include notebooks/COVID-19-current-situation-on-December/31.html %}
+
+### 歐洲國家死亡案例 (折線圖)
+
+{% include notebooks/COVID-19-current-situation-on-December/32.html %}
+
+### 歐洲每日新增確診案例 (折線圖)
+
+{% include notebooks/COVID-19-current-situation-on-December/33.html %}
+
+## 分析亞洲疫情
+
+{% include notebooks/COVID-19-current-situation-on-December/34.html %}
+
+### 亞洲國家每日新增確診案例 (折線圖)
+
+{% include notebooks/COVID-19-current-situation-on-December/35.html %}
+
+## 哪些國家已經脫離疫情高峰
+
+以下地圖顯示，黃色國家的比例很高，代表確診人數快速上升，處於疫情高峰；藍色和紫色國家的比率較低，代表從高峰期開始下降。
+
+我們可以發現歐美似乎有漸漸脫離高峰期，東南亞正在疫情高峰，德國及澳洲似乎已將疫情控制
+
+{% include notebooks/COVID-19-current-situation-on-December/36.html %}
+
+## 全球疫情何時趨緩
+
+利用 sigmoid 函數建立一個模型協助我們預測各國的疫情何時趨緩 (確診人數不再暴增)
 
 待續...

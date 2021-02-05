@@ -1,0 +1,40 @@
+<div class="container" id="notebook-container">
+    <div class="cell border-box-sizing code_cell rendered">
+        <div class="input">
+            <div class="prompt input_prompt">In&nbsp;[34]:</div>
+            <div class="inner_cell">
+                <div class="input_area">
+            <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Ref: https://www.kaggle.com/abhinand05/covid-19-digging-a-bit-deeper</span>
+<span class="n">europe_country_list</span> <span class="o">=</span><span class="nb">list</span><span class="p">([</span>
+    <span class="s1">&#39;Austria&#39;</span><span class="p">,</span><span class="s1">&#39;Belgium&#39;</span><span class="p">,</span><span class="s1">&#39;Bulgaria&#39;</span><span class="p">,</span><span class="s1">&#39;Croatia&#39;</span><span class="p">,</span><span class="s1">&#39;Cyprus&#39;</span><span class="p">,</span><span class="s1">&#39;Czechia&#39;</span><span class="p">,</span><span class="s1">&#39;Denmark&#39;</span><span class="p">,</span><span class="s1">&#39;Estonia&#39;</span><span class="p">,</span><span class="s1">&#39;Finland&#39;</span><span class="p">,</span><span class="s1">&#39;France&#39;</span><span class="p">,</span><span class="s1">&#39;Germany&#39;</span><span class="p">,</span><span class="s1">&#39;Greece&#39;</span><span class="p">,</span><span class="s1">&#39;Hungary&#39;</span><span class="p">,</span><span class="s1">&#39;Ireland&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Italy&#39;</span><span class="p">,</span> <span class="s1">&#39;Latvia&#39;</span><span class="p">,</span><span class="s1">&#39;Luxembourg&#39;</span><span class="p">,</span><span class="s1">&#39;Lithuania&#39;</span><span class="p">,</span><span class="s1">&#39;Malta&#39;</span><span class="p">,</span><span class="s1">&#39;Norway&#39;</span><span class="p">,</span><span class="s1">&#39;Netherlands&#39;</span><span class="p">,</span><span class="s1">&#39;Poland&#39;</span><span class="p">,</span><span class="s1">&#39;Portugal&#39;</span><span class="p">,</span><span class="s1">&#39;Romania&#39;</span><span class="p">,</span><span class="s1">&#39;Slovakia&#39;</span><span class="p">,</span><span class="s1">&#39;Slovenia&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Spain&#39;</span><span class="p">,</span> <span class="s1">&#39;Sweden&#39;</span><span class="p">,</span> <span class="s1">&#39;United Kingdom&#39;</span><span class="p">,</span> <span class="s1">&#39;Iceland&#39;</span><span class="p">,</span> <span class="s1">&#39;Russia&#39;</span><span class="p">,</span> <span class="s1">&#39;Switzerland&#39;</span><span class="p">,</span> <span class="s1">&#39;Serbia&#39;</span><span class="p">,</span> <span class="s1">&#39;Ukraine&#39;</span><span class="p">,</span> <span class="s1">&#39;Belarus&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Albania&#39;</span><span class="p">,</span> <span class="s1">&#39;Bosnia and Herzegovina&#39;</span><span class="p">,</span> <span class="s1">&#39;Kosovo&#39;</span><span class="p">,</span> <span class="s1">&#39;Moldova&#39;</span><span class="p">,</span> <span class="s1">&#39;Montenegro&#39;</span><span class="p">,</span> <span class="s1">&#39;North Macedonia&#39;</span><span class="p">])</span>
+
+<span class="n">country_df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">country_df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">])</span>
+<span class="n">train_europe</span> <span class="o">=</span> <span class="n">country_df</span><span class="p">[</span><span class="n">country_df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">europe_country_list</span><span class="p">)]</span>
+<span class="c1">#train_europe[&#39;date_str&#39;] = pd.to_datetime(train_europe[&#39;date&#39;])</span>
+<span class="n">train_europe_latest</span> <span class="o">=</span> <span class="n">train_europe</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;date == @target_date&#39;</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">choropleth</span><span class="p">(</span><span class="n">train_europe_latest</span><span class="p">,</span> <span class="n">locations</span><span class="o">=</span><span class="s2">&quot;country&quot;</span><span class="p">,</span> 
+                    <span class="n">locationmode</span><span class="o">=</span><span class="s1">&#39;country names&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;confirmed&quot;</span><span class="p">,</span> 
+                    <span class="n">hover_name</span><span class="o">=</span><span class="s2">&quot;country&quot;</span><span class="p">,</span> <span class="n">range_color</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">train_europe_latest</span><span class="p">[</span><span class="s1">&#39;confirmed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()],</span> 
+                    <span class="n">color_continuous_scale</span><span class="o">=</span><span class="s1">&#39;portland&#39;</span><span class="p">,</span> 
+                    <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;European Countries with Confirmed Cases as of </span><span class="si">{</span><span class="n">target_date</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="s1">&#39;europe&#39;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">800</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></pre></div>
+                </div>
+            </div>
+        </div>
+        <div class="output_wrapper">
+            <div class="output">
+                <div class="output_area">
+                    <div class="prompt"></div>
+                    <div class="output_html rendered_html output_subarea ">
+                        <iframe id="igraph" scrolling="no" style="border:none;" seamless="seamless"
+                            src="https://plotly.com/~blueskyson1401/38.embed?autosize=true" height="525"
+                            width="100%"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
