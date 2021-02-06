@@ -2,7 +2,7 @@
 title: "肺炎疫情 (COVID-19) 到 2020 年 12 月的現狀 (自 Kaggle Notebook 翻譯)"
 subtitle: ""
 excerpt: "COVID-19 python data science"
-layout: post
+layout: notebook
 author: "blueskyson"
 header-style: text
 mathjax: true
@@ -10,6 +10,7 @@ tags:
   - data science
   - python
 ---
+
 
 來源: [https://www.kaggle.com/corochann/covid-19-current-situation-on-december/notebook](https://www.kaggle.com/corochann/covid-19-current-situation-on-december/notebook)  
 此筆記的資料集來源: [Johns Hopkins University github repository](https://github.com/CSSEGISandData/COVID-19)  
