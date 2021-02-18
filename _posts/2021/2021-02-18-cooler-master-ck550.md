@@ -1,5 +1,5 @@
 ---
-title: "Cool Master CK550 紅軸鍵盤開箱"
+title: "Cooler Master CK550 紅軸鍵盤開箱"
 subtitle: ""
 excerpt: "CK550 紅軸 鍵盤"
 layout: post
