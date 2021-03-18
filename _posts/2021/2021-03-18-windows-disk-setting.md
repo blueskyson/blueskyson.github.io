@@ -1,5 +1,5 @@
 ---
-title: "Windows EFI 磁碟操作"
+title: "Windows EFI、ESP 磁區操作"
 subtitle: ""
 excerpt: "EFI ESP"
 layout: post
@@ -8,6 +8,8 @@ header-style: text
 tags:
   - others
 ---
+
+在刪除 linux 雙系統後，常常會在硬碟中殘留 Windows 用不到的 EFI 分割區，可以用以下方式將其清除。
 
 ## 刪除 EFI 磁區
 
@@ -53,7 +55,9 @@ DISKPART> list partition
 
 ```
 
-最後使用磁碟管理員掛載或延伸這塊分割就行了
+最後使用磁碟管理員掛載或延伸這塊磁區就行了。
+
+安裝過雙系統後，通常原生的 `ESP` 會被複寫，以利 `grub` 去抓取兩個系統的 loader 供使用者選擇，這個磁區通常在 C 槽的最前面，不可隨意刪除。接下來是如何讓 Windows 掛載 `ESP` 磁區。
 
 ## 掛載 ESP 磁區
 
@@ -82,7 +86,7 @@ DISKPART> list partition
   磁碟分割  5    主要                 237 GB   239 GB
 ```
 
-其中`磁碟分割  1`是 EFI 磁區
+其中`磁碟分割  1`是 ESP 磁區
 
 ```
 DISKPART> select partition 1
