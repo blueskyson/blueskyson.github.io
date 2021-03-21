@@ -108,3 +108,13 @@ $ xrandr --addmode Virtual1 "1920x960_60.00"
 這個方法只能 fit 當前的視窗大小，如果需要常常縮放 VirtualBox 視窗，則會在邊邊出現 scroll bar
 
 ![](https://raw.githubusercontent.com/blueskyson/image-host/master/resolutions2.png)
+
+只做完以上設定，如果重新開機會遺失客製化的解析度，如果要永久保存，在 `/etc/X11` 創建一個檔案叫 `xorg.conf` ，新增以下內容
+
+```bash
+$ cat /etc/X11/xorg.conf 
+Section "Monitor"
+    Identifier "Virtual1"
+    Modeline   "1920x960_60.00"  152.00  1920 2032 2232 2544  960 963 973 996 -hsync +vsync
+EndSection
+```
