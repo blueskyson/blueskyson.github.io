@@ -86,7 +86,7 @@ a & b & c & d \\
 0 & j & 0 & k \\
 \end{bmatrix} $$
 
-此時 pivot 為 $ A_{22} = 0 $ ，無法以 A_{22} 消除 h 、 j ，所以要將第三列跟第二列對調再進行高斯消去:
+此時 pivot 為 $ A_{22} = 0 $ ，無法以 $ A_{22} $ 消除 h 、 j ，所以要將第三列跟第二列對調再進行高斯消去:
 
 $$ \Rightarrow \begin{bmatrix}
 a & b & c & d \\

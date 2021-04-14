@@ -89,8 +89,11 @@ friends: [
     #     href: "http://su.gallery/"
     # },{
     {
-        title: "shangrex",
+        title: "shangrex's website",
         href: "http://shangrex.github.io"
+    },{
+        title: "shangrex",
+        href: "https://github.com/shangrex"
     },{
         title: "arthurchang09",
         href: "https://github.com/arthurchang09"

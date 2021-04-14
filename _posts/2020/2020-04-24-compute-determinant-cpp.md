@@ -11,7 +11,7 @@ tags:
 
 ## 降階公式
 
-這是一個常用的行列式降階公式，[這裡](https://en.wikipedia.org/wiki/Laplace_expansion)有證明，雖然我是看不懂維基百科的證明啦，而且大一線代課的內容也忘得差不多了，之後有機會得再翻翻線代教科書好好複習一下了:persevere:
+這是一個常用的行列式降階公式，[這裡](https://en.wikipedia.org/wiki/Laplace_expansion)有證明，雖然我是看不懂維基百科的證明啦，而且大一線代課的內容也忘得差不多了，之後有機會得再翻翻線代教科書好好複習一下了
 
 ![formula](https://wikimedia.org/api/rest_v1/media/math/render/svg/14f2f2a449d6d152ee71261e47551aa0a31c801e)
 
