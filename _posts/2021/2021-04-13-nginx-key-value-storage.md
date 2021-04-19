@@ -159,12 +159,27 @@ if ($_SERVER['REQUEST_METHOD'] != "POST") {
         echo "Failed. Please use POST body: value=<VALUE>\n";
         return;
 }
+
 $value = $_POST['value'];
-if (empty($value)) {
+if (strlen($value) == 0 and empty($value)) {
         echo "Failed. POST body: value=empty()\n";
         return;
+} elseif (strlen($value) > 256) {
+        echo strlen($value);
+        echo "Failed. Value too long (max length is 256).\n";
+        return;
 }
+
 $key = substr($_SERVER['REQUEST_URI'], 5);
+if (strlen($key) > 256) {
+        echo strlen($key);
+        echo "Failed. Key too long (max length is 256).\n";
+        return;
+}
+if (strlen($key) == 256) {
+        $key = hash('sha512', $key);
+}
+
 $file_name = "data/".$key;
 $file = fopen($file_name, "w") or die("Unable to open file!");
 fwrite($file, $value);
@@ -236,6 +251,14 @@ $ sudo vim /var/www/lab7/get.php
 ```php
 <?php
 $key = substr($_SERVER['REQUEST_URI'], 5);
+if (strlen($key) > 256) {
+        echo "key not found!";
+        return;
+}
+if (strlen($key) == 256) {
+        $key = hash('sha512', $key);
+}
+
 $file_name = "data/".$key;
 if (file_exists($file_name)) {
         $file = fopen($file_name, "r");
