@@ -1,7 +1,7 @@
 ---
 title: "使用 nginx 與 php 架設 key-value storage 服務"
 subtitle: ""
-excerpt: "nginx php key-value storage"
+excerpt: "nginx php fastcgi"
 layout: post
 author: "blueskyson"
 header-style: text
