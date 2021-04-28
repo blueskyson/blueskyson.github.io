@@ -176,10 +176,8 @@ if (strlen($key) > 256) {
         echo "Failed. Key too long (max length is 256).\n";
         return;
 }
-if (strlen($key) == 256) {
-        $key = hash('sha512', $key);
-}
 
+$key = hash('sha512', $key);
 $file_name = "data/".$key;
 $file = fopen($file_name, "w") or die("Unable to open file!");
 fwrite($file, $value);
@@ -255,10 +253,8 @@ if (strlen($key) > 256) {
         echo "key not found!";
         return;
 }
-if (strlen($key) == 256) {
-        $key = hash('sha512', $key);
-}
 
+$key = hash('sha512', $key);
 $file_name = "data/".$key;
 if (file_exists($file_name)) {
         $file = fopen($file_name, "r");
