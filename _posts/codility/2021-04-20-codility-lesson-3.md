@@ -1,5 +1,5 @@
 ---
-title: "Codility Lesson 3 FrogJmp, PermMissingElem"
+title: "Codility Lesson 3 FrogJmp, PermMissingElem, TapeEquilibrium"
 subtitle: ""
 excerpt: "codility frogjmp"
 layout: post
