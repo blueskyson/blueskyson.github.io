@@ -7,6 +7,9 @@ author: "blueskyson"
 header-style: text
 tags:
   - apache
+  - tomcat
+  - servlet
+  - java
 ---
 
 安裝 java 8
@@ -15,11 +18,11 @@ tags:
 $ sudo apt install openjdk-8-jdk
 ```
 
-從官網下載 tomcat 的 release 版本，我選用 [10.0.6](https://tomcat.apache.org/download-10.cgi)，下載完成後解壓縮 `apache-tomcat-10.0.6.tar.gz`，然後撰寫一個 `setenv.sh` 用來存放 tomcat 所需的環境變數。
+從官網下載 tomcat 的 release 版本，我選用 [9.0.46](https://tomcat.apache.org/download-10.cgi)，下載完成後解壓縮 `apache-tomcat-9.0.46.tar.gz`，然後撰寫一個 `setenv.sh` 用來存放 tomcat 所需的環境變數。
 
 ```non
-$ tar -xvf apache-tomcat-10.0.6.tar.gz
-$ cd apache-tomcat-10.0.6
+$ tar -xvf apache-tomcat-9.0.46.tar.gz
+$ cd apache-tomcat-9.0.46
 $ vim setenv.sh
 ```
 
@@ -28,8 +31,8 @@ $ vim setenv.sh
 
 ```bash
 export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
-export CATALINA_HOME="/home/lin/Desktop/apache-tomcat-10.0.6"
-export CATALINA_BASE="/home/lin/Desktop/apache-tomcat-10.0.6"
+export CATALINA_HOME="/home/lin/Desktop/apache-tomcat-9.0.46"
+export CATALINA_BASE="/home/lin/Desktop/apache-tomcat-9.0.46"
 export CATALINA_PID="$CATALINA_BASE/tomcat.pid"
 ```
 
