@@ -65,8 +65,8 @@ $ sudo docker run --name nginxtest -p 8080:80 -v /home/lin/Desktop/docker:/usr/s
 
 - **docker run**: 創建一個新的容器 (Container) 並對其進行操作
 - **--name string**: 為容器命名，我命名為 nginxtest
-- **-p <host_port>:<container_port>**: 連接埠轉送，有多少 `-p h_p:c_p` 就轉送多少 port
-- **-v host_dir:container_dir**: 全文為 volume，將 host 目錄掛載至 container 目錄，如此一來 container 就能在該目錄讀寫檔案，注意必須使用絕對路徑。這個參數跟 -p 一樣可以有複數個
+- **-p \<host_port\>:\<container_port\>**: 連接埠轉送，有多少 `-p h_p:c_p` 就轉送多少 port
+- **-v \<host_dir\>:\<container_dir\>**: 全文為 volume，將 host 目錄掛載至 container 目錄，如此一來 container 就能在該目錄讀寫檔案，注意必須使用絕對路徑。這個參數跟 -p 一樣可以有複數個
 - **-d**: 全文為 detach，代表讓 container 在背景執行
 - **IMAGE**: container 中的 image，在以上範例為 nginx
 
