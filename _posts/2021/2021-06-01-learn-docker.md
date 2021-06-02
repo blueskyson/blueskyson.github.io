@@ -355,8 +355,6 @@ Docker 太神啦!
 
 [Docker 建立 Nginx 基礎分享](https://medium.com/@xroms123/docker-%E5%BB%BA%E7%AB%8B-nginx-%E5%9F%BA%E7%A4%8E%E5%88%86%E4%BA%AB-68c0771457fb) <=大推這份筆記，本篇內容很多是參考他的，感謝這位網友!!
 
-[Get started with Docker Compose](https://docs.docker.com/compose/gettingstarted/)
+[Get started with Docker Compose](https://docs.docker.com/compose/gettingstarted/) <=官網其實資訊很足夠，又不會多到讓人看不完!!
 
-[Dockerise your PHP application with Nginx and PHP7-FPM](http://geekyplatypus.com/dockerise-your-php-application-with-nginx-and-php7-fpm/)
-
-[Restart flask app in docker on changes](https://stackoverflow.com/questions/40250199/restart-flask-app-in-docker-on-changes)
+[Docker Tip #10: Project Structure with Multiple Dockerfiles and Docker Compose](https://nickjanetakis.com/blog/docker-tip-10-project-structure-with-multiple-dockerfiles-and-docker-compose) <= 這篇討論串在談如何處理多個 Dockerfile，算延伸閱讀吧
