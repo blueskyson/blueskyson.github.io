@@ -125,9 +125,9 @@ nginx        latest    d1a364dc548d   7 days ago   133MB
 透過 `REPOSITORY:TAG` 或 `IMAGE ID` 刪除 Image
 
 ```non
-$ sudo docker nginx:latest
+$ sudo docker rmi nginx:latest
 或
-$ sudo docker d1a364dc548d
+$ sudo docker rmi d1a364dc548d
 ```
 
 ## Dockerfile
