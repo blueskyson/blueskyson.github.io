@@ -88,10 +88,6 @@ objectclass: dcObject
 objectclass: organization
 o: NASA
 dc: nasa
-
-dn: cn=admin,dc=nasa,dc=imslab,dc=org
-objectclass: organizationalRole
-cn: admin
 ```
 
 ```non
