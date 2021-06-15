@@ -10,7 +10,7 @@ tags:
   - docker
 ---
 
-## 安裝
+## 1. 安裝
 
 首先使用指令安裝 Docker
 
@@ -25,7 +25,7 @@ $ sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docke
 $ sudo chmod +x /usr/local/bin/docker-compose
 ```
 
-## 透過指令產生 Container
+## 2. 透過指令產生 Container
 
 使用 nginx 當作範例，首先新增一個資料用以測試 docker，在資料夾中新增  `index.html`
 
@@ -90,7 +90,7 @@ $ curl localhost:8080
 
 以上便完成 docker 的初體驗
 
-## 刪除 Container
+## 3. 刪除 Container
 
 使用 `docker ps` 查看正在運行的服務
 
@@ -112,7 +112,7 @@ $ sudo docker rm nginxtest
 
 記得要開新的 Container 之前要把舊的同樣名稱的 Container 刪除
 
-## 刪除 Image
+## 4. 刪除 Image
 
 使用 `docker images` 查看本地的 image
 
@@ -130,7 +130,7 @@ $ sudo docker rmi nginx:latest
 $ sudo docker rmi d1a364dc548d
 ```
 
-## Dockerfile
+## 5. Dockerfile
 
 簡而言之，Dockerfile 是一個用以製造自定義 Image 的文字檔，Dockerfile 可以指定 Base Image，並且透過 linux 指令在 Base Image 安裝環境、為其新增環境變數、決定執行時期要啟動那些程序等。
 
@@ -210,7 +210,7 @@ $ sudo docker run art:1
 
 刪除 Container 和 Image 就和前述步驟差不多，不再演示
 
-## Docker-Compose
+## 6. Docker-Compose
 
 前面實際操作如何創建 Container 和 Image 後不難體會 Docker 容器隔離和輕量化的方便性，docker 可以透過 image 快速複製出許多環境相同的 container，同時幾乎不會影響到 host 的運作，又節省空間。
 
