@@ -15,6 +15,8 @@ tags:
 
 參考這篇文章 [https://magiclen.org/ubuntu-server-ldap/](https://magiclen.org/ubuntu-server-ldap/)
 
+安裝時，照著 ldap 的類 GUI 提示設定 admin 密碼、將 nasa.imslab.org 設為 root dn
+
 ```non
 $ sudo apt install slapd
 $ sudo dpkg-reconfigure slapd
@@ -62,50 +64,6 @@ $ sudo netstat -tulnp | grep slapd
 tcp   0   0 0.0.0.0:389   0.0.0.0:*   LISTEN      60490/slapd
 tcp6  0   0 :::389        :::*        LISTEN      60490/slapd
 ```
-
-輸出
-
-```non
-# extended LDIF
-#
-# LDAPv3
-# base <dc=nasa,dc=imslab,dc=org> with scope subtree
-# filter: (objectclass=*)
-# requesting: ALL
-#
-
-# nasa.imslab.org
-dn: dc=nasa,dc=imslab,dc=org
-objectClass: dcObject
-objectClass: organization
-o: NASA
-dc: nasa
-
-# admin, nasa.imslab.org
-dn: cn=admin,dc=nasa,dc=imslab,dc=org
-objectClass: organizationalRole
-cn: admin
-
-# search result
-search: 2
-result: 0 Success
-
-# numResponses: 3
-# numEntries: 2
-```
-
-將學生帳號加入 LDAP
-
-```non
-ldapadd -x -D "cn=admin,dc=nasa,dc=imslab,dc=org" -W -f user.ldif
-```
-
-### Port Forwarding
-
-```non
-ssh F74076027@140.116.246.189 -p 22034 -L 8080:localhost:389
-```
-
 
 ## 編輯 ldif 檔
 
