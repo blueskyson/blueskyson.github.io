@@ -1,0 +1,12 @@
+---
+layout: page
+title: "Note"
+description: ""
+comment: false
+header-img: "img/note-bg.jpg"
+---
+
+<div class="zh post-container">
+    {% capture note %}{% include note/note.md %}{% endcapture %}
+    {{ note | markdownify }}
+</div>
