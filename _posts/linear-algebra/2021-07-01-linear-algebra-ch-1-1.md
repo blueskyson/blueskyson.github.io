@@ -42,16 +42,42 @@ $$\begin{align*}
 
 1. 調換方程式順序
 2. 對方程式等號左右同乘一個常數
-3. 將同一系統的兩個方程式相加
+3. 將同一系統的兩個方程式相加，替換掉原本的方程式
+
+這三種操作在矩陣中也稱作 ***row operation***
 
 ## strict triangular form
 
 若一個系統的第 k 個方程式的前 k - 1 個係數皆為 0，則稱其為 ***strict triangular form***，如下
 
 $$\begin{align*}
-3x_1+2x_2+x_3&=1 \\\\
-x_2-x_3&=2 \\\\
+3x_1+2x_2+x_3&=1 \\
+x_2-x_3&=2 \\
 2x_3&=4
 \end{align*}$$
 
-用 strict triangular form 可以直接求得最末端的變數，並且透過 ***back substitution*** 求得線性系統的解。透過 ***augmented matrix*** (**擴增矩陣**) 可以很容易求得 strict triangular form
+用 strict triangular form 可以直接求得最末端的變數，並且透過 ***back substitution*** 求得線性系統的解。透過 ***augmented matrix*** (**增廣矩陣**) 可以很容易求得 strict triangular form
+
+$$
+\left[
+\begin{array}{ccc|c}
+1 & 2 & 1  & 3 \\
+2 & 3 & 1  & 4 \\
+3 & -1 & -3  & -1
+\end{array}
+\right] \Rightarrow
+\left[
+\begin{array}{ccc|c}
+1 & 2 & 1  & 3 \\
+0 & -1 & -1  & -2 \\
+0 & -7 & -6  & -10
+\end{array}
+\right] \Rightarrow
+\left[
+\begin{array}{ccc|c}
+1 & 2 & 1  & 3 \\
+0 & -1 & -1  & -2 \\
+0 & 0 & 1  & 4
+\end{array}
+\right]
+$$
