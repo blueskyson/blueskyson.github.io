@@ -68,7 +68,7 @@ $$
 0 & 0 & 1 & -1 & 0
 \end{array}
 \right]
-\rm{(Row Echelon Form)} \\
+\rm{(Row\ Echelon\ Form)} \\
 \Rightarrow \left[
 \begin{array}{cccc|c}
 1 & -1 & 0 & -2 & 0 \\
@@ -83,7 +83,7 @@ $$
 0 & 0 & 1 & -1 & 0
 \end{array}
 \right]
-\rm{(Reduced Row Echelon Form)}
+\rm{(Reduced\ Row\ Echelon\ Form)}
 $$
 
 若一個系統的所有方程式常數項都為 0，即增廣矩陣右邊全為 0，則稱此系統為 ***homogeneous system*** (**齊次**)。若一個系統為齊次，則此系統必為 consistent。

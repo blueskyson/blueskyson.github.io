@@ -55,3 +55,59 @@ tags:
 ![](https://raw.githubusercontent.com/blueskyson/image-host/master/note/co/3.png)
 
 將矽濃縮提煉成柱狀的**矽晶棒**，接下來將矽晶棒切片變成**矽晶圓**，塗上各種材料後，在上方放**光罩**進行光刻，然後經過測試、分類、封裝便成為電腦裡的晶片。
+
+## 效能
+
+**時間計算**
+
+- **wall clock time、response time、elapsed time:** 執行一個任務所花的時間，等同於現實中使用者體感的時間差。
+- **cpu time:** cpu 執行任務消耗的時間 (不包含 I/O)，如果是多核心一起執行任務，每個核心的 cpu time 會單獨計算，最後再加總，所以有可能發生 cpu time 大於 wall clocktime。
+
+效能定義，其中 Execution Time 視需求使用 wall clock time 或 cpu time:
+
+$$Performance_X = \dfrac{1}{Execution\ Time_X}$$
+
+效能比較，X 的效能為 Y 的 n 倍:
+
+$$\dfrac{Performance_X}{Performance_Y}=\dfrac{Execution\ Time_Y}{Execution\ Time_X}=n$$
+
+**CPU 計時**
+
+- **Clock Period**: CPU 計時的最短周期，即 1 個 Cycle 耗費的時間，如: 250ps = 0.25ns = 250×10–12s
+- **Clock Frequency、Clock Rate**: 一秒鐘有多少 Cycle，如 4.0GHz = 4000MHz = 4.0×109Hz
+- **Cycle per Instruction、CPI**: 執行一個指令耗費的 Cycle 數
+
+$$CPU\ Time=Clock\ Cycle \times Clock\ Period=\dfrac{Clock\ Cycle}{Clock\ Rate}$$
+
+達成優化的方法無非提高 Clock Rate 或是減少 Clock Cycle，其中 Clock Cycle 可以分解為以下:
+
+$$Clock\ Cycles=Instruction\ Count \times CPI$$
+
+因此將 CPU Time 重新寫為
+
+$$\begin{align*}
+CPU\ Time &=Clock\ Cycle \times Clock\ Period \\
+&=Instruction\ Count \times CPI \times Clock\ Period \\
+&=\dfrac{Instruction\ Count \times CPI}{Clock\ Rate}
+\end{align*}$$
+
+範例:
+
+![](https://raw.githubusercontent.com/blueskyson/image-host/master/note/co/4.png)
+
+## 功耗
+
+在 CMOS 中，單一次通過電晶體需要消耗:
+
+$$Energy=\dfrac{1}{2}CV^2 \\
+Power=\dfrac{1}{2}CV^2f$$
+
+受到功耗、發熱量限制，現在的處理器不再以提高頻率為主要目標，而是往多核心以及提升快取速度發展
+
+## Amdahl’s Law
+
+$$T_{improved}=\dfrac{T_{affected}}{improvement\ factor}+T_{unaffected}$$
+
+舉例
+
+![](https://raw.githubusercontent.com/blueskyson/image-host/master/note/co/5.png)
