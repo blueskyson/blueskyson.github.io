@@ -8,6 +8,7 @@ header-style: text
 mathjax: true
 tags:
   - c++
+  - data structure
 ---
 
 Bloom Filter 在實作 key value storage 帶給我很大的效能優化，所以想特別做一份筆記紀錄，但是這個 bloom filter 是基於 jserv 老師在 [dict](https://github.com/sysprog21/dict) 裡的實作，不是我原創的內容。
