@@ -197,6 +197,11 @@ unsigned BloomFilter::hash_count() {
 }
 
 BloomFilter::~BloomFilter() {
+    while (head) {
+        hash_node *p = head;
+        head = head->next;
+        delete p;
+    }
     delete[] table;
 }
 ```
