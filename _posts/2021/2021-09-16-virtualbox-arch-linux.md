@@ -1,7 +1,7 @@
 ---
 title: "在 VirtualBox 安裝 Arch Linux"
 subtitle: ""
-excerpt: ""
+excerpt: "virtualBox arch linux virtual machine"
 layout: post
 author: "blueskyson"
 header-style: text
