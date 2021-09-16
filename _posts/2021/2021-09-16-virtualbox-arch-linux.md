@@ -51,7 +51,11 @@ Quit
 # vim /etc/locale.gen
 取消註解 en_US.UTF-8 UTF-8
 取消註解 zh_TW.UTF-8 UTF-8
-:wq
+<Esc>:wq
+
+# vim /etc/locale.conf
+LANG=en_US.UTF-8
+<Esc>:wq
 
 # vim /etc/hostname
 鍵入 hostname
@@ -226,6 +230,17 @@ Interface=虛擬網卡
    # vim /etc/locale.gen
    ```
    ![](https://raw.githubusercontent.com/blueskyson/image-host/master/archlinux-vm/23.png)
+   影片中沒有執行以下兩個動作。動作一：
+   ```non
+   # locale-gen
+   ```
+   動作二：
+   ```
+   # vim /etc/locale.conf
+   LANG=en_US.UTF-8
+   <Esc>:wq
+   ```
+   這兩個動作其實也可以等到裝完系統後再處理。
 
 4. 設定 etc/hostname 與 /etc/hosts，注意以 tab 分隔 IP 和 hostname，不是用空白鍵分隔。
    ```non
@@ -312,3 +327,7 @@ Interface=虛擬網卡
 ```
 
 ![](https://raw.githubusercontent.com/blueskyson/image-host/master/archlinux-vm/32.png)
+
+如果這篇網誌成功幫助到您，不妨動動小手幫這個網站點顆星星 [https://github.com/blueskyson/blueskyson.github.io](https://github.com/blueskyson/blueskyson.github.io)。
+
+安裝完 Arch Linux 可以參考這一篇設定系統：[Arch Linux 基本設定](/2021/09/16/virtualbox-arch-linux/)
