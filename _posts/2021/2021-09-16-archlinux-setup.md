@@ -168,6 +168,8 @@ $ sudo systemctl enable NetworkManager
 $ sudo systemctl start NetworkManager
 ```
 
+以下示範如何使用 `nmcli` 操作 wifi 連線，如果不想打指令，也可以用 `nmtui` 模擬圖形界面操作。 
+
 ### 打開 wifi
 
 啟動無險網卡：
@@ -215,10 +217,33 @@ Wired connection 1  f70dcdcf-010a-3c84-9484-3ae5e2ce99e1  ethernet  --
 
 斷開連接並關閉搜尋附近網路：
 
-```
+```non
 $ nmcli connection down HSNU-AP
 $ nmcli radio wifi off
 ```
+
+### 解決 networkmanager 與 lightdm 衝突
+
+啟用 netmanager 後，重新開機可能會遇到 xserver 崩潰的狀況，並顯示 lightdm starting failed。詳細原因我也不清楚，但是做以下動作可以解決。
+
+```non
+$ sudo vim /etc/default/grub
+```
+
+裡面應該會有一行 GRUB_CMDLINE_LINUX=""，將其改為：
+
+```
+GRUB_CMDLINE_LINUX="novueau.modestet=0"
+```
+
+然後執行
+
+```non
+$ sudo grub-mkconfig -o /boot/grub/grub.cfg
+$ sudo pacman -S xf86-video-intel
+```
+
+重新開機就解決了，但是如果有接雙螢幕的話，xf86-video-intel 套件偶爾會在副螢幕破圖，但不至於影響使用。
 
 ## 好用的軟體
 
