@@ -215,7 +215,7 @@ Wired connection 1  f70dcdcf-010a-3c84-9484-3ae5e2ce99e1  ethernet  --
 
 斷開連接並關閉搜尋附近網路：
 
-```
+```non
 $ nmcli connection down HSNU-AP
 $ nmcli radio wifi off
 ```
