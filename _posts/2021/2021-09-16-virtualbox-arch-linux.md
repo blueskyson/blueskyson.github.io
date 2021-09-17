@@ -235,7 +235,7 @@ Interface=虛擬網卡
    # locale-gen
    ```
    動作二：
-   ```
+   ```non
    # vim /etc/locale.conf
    LANG=en_US.UTF-8
    <Esc>:wq
@@ -330,4 +330,4 @@ Interface=虛擬網卡
 
 如果這篇網誌成功幫助到您，不妨動動小手幫這個網站點顆星星 [https://github.com/blueskyson/blueskyson.github.io](https://github.com/blueskyson/blueskyson.github.io)。
 
-安裝完 Arch Linux 可以參考這一篇設定系統：[Arch Linux 基本設定](/2021/09/16/virtualbox-arch-linux/)
+安裝完 Arch Linux 可以參考這一篇設定系統：[Arch Linux 基本設定](/2021/09/16/archlinux-setup/)

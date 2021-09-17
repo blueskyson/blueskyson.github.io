@@ -105,6 +105,8 @@ export XMODIFIERS=@im=hime
 hime &
 ```
 
+重新登入即可。
+
 ## 好用的軟體
 
 ### yay
