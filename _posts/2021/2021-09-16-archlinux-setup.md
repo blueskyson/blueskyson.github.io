@@ -38,7 +38,7 @@ $ sudo vim /etc/vconsole.conf
 
 輸入 FONT= 剛剛所套用的字型，然後保存退出就完成了。
 
-```non
+```
 FONT=ter-d24b.psf.gz
 ```
 
@@ -82,6 +82,8 @@ Arch 安裝時系統預設沒有中文字體 (至少我安裝時依定會亂碼)
 $ sudo pacman -S wqy-microhei
 ```
 
+### Hime 輸入法
+
 透過 `yay` 安裝 hime。
 
 ```non
@@ -107,6 +109,142 @@ hime &
 
 重新登入即可。
 
+### 新酷音輸入法
+
+注意以下方法只有在 xfce 測試過，如果桌面環境是 gnome 或 KDE，不保證以下方法會成功。
+
+透過 `pacman` 安裝 ibus-chewing。
+
+```non
+$ sudo pacman -S ibus ibus-chewing libibus libchewing
+```
+
+新增一個腳本放在 /etc/profile.d
+
+```non
+$ sudo vim /etc/profile.d/ibus.sh
+```
+
+輸入以下內容以便開機時自動啟用 ibus：
+
+```
+GTK_IM_MODULE=ibus
+QT_IM_MODULE=ibus
+XMODIFIERS="@im=ibus"
+ibus-daemon -drx
+```
+
+接著重新開機後，在 xfce 的 `Application Finder` 裡找到 `IBus Preferences` 並雙擊打開，選擇 `Input Method` -> `Add` -> `Chinese` -> `Chewing`，即可完成設定。
+
+## 安裝聲音軟體
+
+最常用的聲音控制軟體應屬 alsa:
+
+```non
+$ sudo pacman -S alsa alsa-util
+```
+
+開啟混音裝置
+
+```non
+$ alsamixer
+```
+
+如果要一併啟用 xfce 上方 panel 的音量圖示，需要再執行以下指令：
+
+```non
+$ sudo pacman -S pulseaudio pavucontrol
+$ pulseaudio --check
+$ pulseaudio -D
+```
+
+## 啟動 wifi
+
+最簡單的方法是安裝 networkmanager，但是注意要先 disable 目前正在運行的網路管理工具 （如果有的話）。
+
+```non
+$ sudo pacman -S networkmanager
+$ sudo systemctl enable NetworkManager
+$ sudo systemctl start NetworkManager
+```
+
+以下示範如何使用 `nmcli` 操作 wifi 連線，如果不想打指令，也可以用 `nmtui` 模擬圖形界面操作。 
+
+### 打開 wifi
+
+啟動無險網卡：
+
+```non
+$ nmcli radio wifi on
+```
+
+可以透過 `ip a` 查看網卡狀態，通常無線網卡名稱為 wlan0 或 wlp2s0，狀態會顯示 `<NO-CARRIER,BROADCAST,MULTICAST,UP>>`。
+
+```non
+$ ip a
+...
+wlan0: <NO-CARRIER,BROADCAST,MULTICAST,UP>
+...
+```
+
+狀態顯示沒有異常的話，就掃描附近的 wifi。
+
+```non
+$ nmcli device wifi list
+IN-USE  BSSID              SSID           MODE   CHAN  RATE        SIGNAL  BARS  SECURITY  
+        40:B0:76:B9:40:77  HSNU-AP        Infra  1     117 Mbit/s  99      ▂▄▆█  WPA2      
+        FC:D7:33:01:89:E8  TP-LINK_89E8   Infra  6     270 Mbit/s  69      ▂▄▆_  WPA1 WPA2 
+        64:09:80:4F:3F:8B  Xiaomi_3F8A    Infra  1     270 Mbit/s  35      ▂▄__  WPA1 WPA2 
+        9A:96:B8:97:B9:0B  AndroidAPE409  Infra  11    130 Mbit/s  22      ▂___  WPA2      
+```
+
+以我的手機網路 HSNU-AP 為例，透過以下指令輸入密碼連線：
+
+```non
+$ nmcli device wifi connect HSNU-AP password abcd1234
+```
+
+檢查是否成功連線，若成功就會顯示類似以下的訊息。若不成功請另行尋找解決方法。
+
+```non
+$ nmcli connection
+NAME                UUID                                  TYPE      DEVICE 
+HSNU-AP             ff86f0fd-2449-4138-9f22-e814d931e424  wifi      wlan0  
+Wired connection 1  f70dcdcf-010a-3c84-9484-3ae5e2ce99e1  ethernet  -- 
+```
+
+### 關閉 wifi
+
+斷開連接並關閉搜尋附近網路：
+
+```non
+$ nmcli connection down HSNU-AP
+$ nmcli radio wifi off
+```
+
+### 解決 networkmanager 與 lightdm 衝突
+
+啟用 netmanager 後，重新開機可能會遇到 xserver 崩潰的狀況，並顯示 lightdm starting failed。詳細原因我也不清楚，但是做以下動作可以解決。
+
+```non
+$ sudo vim /etc/default/grub
+```
+
+裡面應該會有一行 GRUB_CMDLINE_LINUX=""，將其改為：
+
+```
+GRUB_CMDLINE_LINUX="novueau.modestet=0"
+```
+
+然後執行
+
+```non
+$ sudo grub-mkconfig -o /boot/grub/grub.cfg
+$ sudo pacman -S xf86-video-intel
+```
+
+重新開機就解決了，但是如果有接雙螢幕的話，xf86-video-intel 套件偶爾會在副螢幕破圖，但不至於影響使用。
+
 ## 好用的軟體
 
 ### yay
@@ -115,7 +253,25 @@ hime &
 $ sudo pacman -S --needed base-devel git
 $ git clone https://aur.archlinux.org/yay-git.git
 $ cd yay
-$ sudo makepkg -si
+$ makepkg -si
+```
+
+### autojump
+
+```non
+$ yay -S autojump
+```
+
+開啟 ~/.bashrc，加入這一行指令：
+
+```
+[[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
+```
+
+### tldr
+
+```non
+$ yay -S tldr-cpp-git
 ```
 
 ### chrome
