@@ -82,6 +82,12 @@ Arch 安裝時系統預設沒有中文字體 (至少我安裝時依定會亂碼)
 $ sudo pacman -S wqy-microhei
 ```
 
+除了中文字型之外，還可以安裝 emoji，不過 emoji 須要重新開機才會完全顯示。
+
+```non
+$ sudo pacman -S noto-fonts-emoji
+```
+
 ### Hime 輸入法
 
 透過 `yay` 安裝 hime。
