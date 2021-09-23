@@ -16,18 +16,18 @@ tags:
 
 |Form1 成員|用途|
 |--------|---|
-|Chart chart   |折線圖物件|
-|int[] xvalue  |折線的 x 座標陣列|
-|int[] yvalue  |折線的 y 座標陣列|
-|int x_tick    |一次顯示多少座標點|
+|**Chart** chart   |折線圖物件|
+|**int[]** xvalue  |折線的 x 座標陣列|
+|**int[]** yvalue  |折線的 y 座標陣列|
+|**int** x_tick    |一次顯示多少座標點|
 
 |Form1 函式|用途|
 |----------|---|
 |Form1()   |開啟視窗|
-|Chart MyChart()|生成一個自訂的圖表|
-|void InitXY()|把折線初始化為 0|
-|Series getSeries()|把 `xvalue`, `yvalue` 轉換為 Series 物件|
-|void timer_Tick(object sender, EventArgs e)|在 Timer 觸發時更新折線圖
+|**Chart** MyChart()|生成一個自訂的圖表|
+|**void** InitXY()|把折線初始化為 0|
+|**Series** getSeries()|把 `xvalue`, `yvalue` 轉換為 Series 物件|
+|**void** timer_Tick(object sender, EventArgs e)|在 Timer 觸發時更新折線圖
 
 創建一個名為 LineChart 的 .Net Framwork 專案，然後將以下程式碼貼到 `From1.cs` 即可。
 
