@@ -1,7 +1,7 @@
 ---
 title: "C# Asynchronous Socket"
 subtitle: ""
-excerpt: "virtualBox arch linux virtual machine"
+excerpt: "c# csharp socket"
 layout: post
 author: "blueskyson"
 header-style: text
