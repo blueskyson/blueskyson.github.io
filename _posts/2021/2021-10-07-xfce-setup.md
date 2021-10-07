@@ -51,4 +51,4 @@ $ sudo apt-get install xfce4-power-manager
 
 另外也可以開啟輕觸點擊。
 
-![](https://raw.githubusercontent.com/blueskyson/image-host/master/touchpad1.png)
+![](https://raw.githubusercontent.com/blueskyson/image-host/master/touchpad2.png)
