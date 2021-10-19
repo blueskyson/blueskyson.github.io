@@ -88,6 +88,13 @@ $ sudo pacman -S wqy-microhei
 $ sudo pacman -S noto-fonts-emoji
 ```
 
+也可以透過以下來安裝所有 Unicode 支援的字體。
+
+```non
+$ sudo pacman -S noto-fonts noto-fonts-emoji ttf-linux-libertine ttf-dejavu
+```
+
+
 ### Hime 輸入法
 
 透過 `yay` 安裝 hime。
