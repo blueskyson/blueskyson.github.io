@@ -25,3 +25,6 @@ $$\{1,2\},\{1,3\},\{1,4\},\{1,5\}\\
 
 接下來畫一個有十個點的圖，並且將不共元素的標籤以邊相連。例如 12 與 34 可以相連；12 與 15 則無法相連，因為 1 這個元素重複了；同理 35 與 45 也無法相連。
 
+![](https://raw.githubusercontent.com/blueskyson/image-host/master/petersen-graph.png)
+
+如此便完成 Petersen graph。
