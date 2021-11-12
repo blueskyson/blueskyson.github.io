@@ -1,7 +1,7 @@
 ---
 title: "證明 Petersen graph 的圍長為 5"
 subtitle: "Prove or disprove that Petersen graph has girth 5."
-excerpt: "xfce 新酷音 觸控板"
+excerpt: "petersen graph girth"
 layout: post
 author: "blueskyson"
 header-style: text
@@ -9,6 +9,8 @@ mathjax: true
 tags:
   - graph theory
 ---
+
+Petersen graph 的定義：[https://blueskyson.github.io/2021/11/12/petersen-graph/](https://blueskyson.github.io/2021/11/12/petersen-graph/)
 
 1. Petersen graph 為 simple graph，故沒有 loop 與 multiple edge，也就是沒有 1-cycle 與 2-cycle，見下圖：
    ![](https://raw.githubusercontent.com/blueskyson/image-host/master/loop-multiple-edge.jpg)
