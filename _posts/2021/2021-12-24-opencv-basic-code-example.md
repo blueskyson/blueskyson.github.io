@@ -19,7 +19,7 @@ $ pip install opencv-python
 
 ## OpenCV 讀檔
 
-將圖片命名為 image.jpg 並放在與下方 python 檔案同一個目錄下
+將圖片命名為 image.jpg 並放在與下方 python 檔案同一個目錄下。
 
 ```python
 # showimg.py
@@ -31,15 +31,15 @@ cv2.waitKey(0)
 
 然後執行
 
-```
-python showimg.py
+```non
+$ python showimg.py
 ```
 
 ![](https://raw.githubusercontent.com/blueskyson/image-host/master/opencv/1.png)
 
-按鍵盤任意鍵就可以關閉視窗，千萬不要用滑鼠按右上角紅色叉關閉圖片，程式會進入無窮迴圈。想避免手殘可以改用以下寫法
+按鍵盤任意鍵就可以關閉視窗，千萬不要用滑鼠按右上角紅色叉關閉圖片，程式會進入無窮迴圈。想避免手殘可以改用以下寫法。
 
-```
+```python
 # showing.py
 import cv2
 img = cv2.imread("image.jpg")
@@ -84,7 +84,7 @@ cv2.imwrite('save.png', img)
 
 ## RGB 通道
 
-OpenCV 讀取的圖片其實是一個多維的 numpy array，如果是彩色影像，則圖片中每個像素由左到右，按照藍、綠、紅的數值排列（BGR channel）
+OpenCV 讀取的圖片其實是一個多維的 numpy array，如果是彩色影像，則圖片中每個像素由左到右，按照藍、綠、紅的數值排列（BGR channel）。
 
 ![](https://raw.githubusercontent.com/blueskyson/image-host/master/opencv/3.png)
 
@@ -99,7 +99,7 @@ print(img.shape)
 (387, 620, 3)
 ```
 
-3 代表 BGR 三個 channel、620 代表圖片的寬度、387 代表圖片的高度，所以這是一張 620x387 的 BGR 圖片，我們再打印這張圖
+3 代表 BGR 三個 channel、620 代表圖片的寬度、387 代表圖片的高度，所以這是一張 620x387 的 BGR 圖片，我們再打印這張圖。
 
 ```python
 print(img)
@@ -127,7 +127,7 @@ print(img)
 
 可以看出三個數值一組代表一個像素，以像素為元素形成二維陣列，每個 BGR 數值都介於 0 到 255。灰階影像就不會以 BGR 三個一組為單位，而是直接以 0 到 255 表示每個像素的灰階程度。
 
-接下來透過 `split` 將 BGR 分為三個獨立的二維陣列，再透過 `merge` 把其他 channel 來分離 BGR 三通道
+接下來透過 `split` 將 BGR 分為三個獨立的二維陣列，再透過 `merge` 把其他不要顯示的 channel 填上 0 以分離 BGR 三通道。
 
 ```python
 import cv2
