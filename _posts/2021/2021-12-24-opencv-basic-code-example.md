@@ -1,5 +1,5 @@
 ---
-title: "OpenCV 讀檔、寫檔、RGB 通道"
+title: "OpenCV 讀檔、寫檔、分離 RGB 通道"
 subtitle: ""
 excerpt: "opencv imread imwrite split merge BGR"
 layout: post
