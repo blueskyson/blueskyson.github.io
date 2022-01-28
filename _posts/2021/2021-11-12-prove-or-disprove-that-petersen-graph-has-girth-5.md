@@ -27,7 +27,7 @@ Petersen graph 的定義：[https://blueskyson.github.io/2021/11/12/petersen-gra
 
 4. 舉一個 5-cycle 的例子：
    ```non
-   {1,2}, {3,5}, {5,1}, {2,3}, {4,5} 形成一個 5-girth
+   {1,2}, {3,5}, {2,4}, {5,1}, {3,4} 形成一個 5-girth
    ```
 
 由上述 4 個步驟得證 Petersen graph 的圍長 (girth) 為 5。
