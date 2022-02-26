@@ -85,9 +85,6 @@ page-mathjax: false
 
 # Friends
 friends: [
-    #     title: "Su",
-    #     href: "http://su.gallery/"
-    # },{
     {
         title: "shangrex's website",
         href: "http://shangrex.github.io"
