@@ -64,7 +64,7 @@ C++ 的 `vector`、`stack`、`queue` 更符合資料抽象化的概念，這種�
 
 ## 空間複雜度
 
-空間複雜度$S(P)=c+S_p(I)$。其中$c$為 Fixed part，也就是程式一定要用的基本空間，通常是 `const `和 `static` 變數；$S_p$ 為 Variable part，指的是依照輸入而動代改變的空間，通常是使用 `new` 或 `malloc` 產生的變數以及遞迴函式佔用的空間。
+空間複雜度 $S(P)=c+S_p(I)$。其中 $c$ 為 Fixed part，也就是程式一定要用的基本空間，通常是 `const `和 `static` 變數；$S_p$ 為 Variable part，指的是依照輸入而動代改變的空間，通常是使用 `new` 或 `malloc` 產生的變數以及遞迴函式佔用的空間。
 
 ## 時間複雜度
 
