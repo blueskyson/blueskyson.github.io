@@ -87,9 +87,9 @@ $ sudo apt install mariadb-client-core-10.3
 
 連上 MariaDB：
 
-‵‵‵non
+```non
 $ mysql --socket=/tmp/mysql.sock
-‵‵‵
+```
 
 參考 [MariaDB Basics](https://mariadb.com/kb/en/mariadb-basics/) 建個簡單的資料庫：
 
