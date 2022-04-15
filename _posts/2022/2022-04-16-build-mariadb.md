@@ -48,7 +48,7 @@ cmake . -DBUILD_CONFIG=mysql_release && make -j8
 
 安裝 mariaDB：
 
-```
+```non
 $ sudo make install
 ```
 
