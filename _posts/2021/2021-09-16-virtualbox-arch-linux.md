@@ -57,6 +57,7 @@ Quit
 LANG=en_US.UTF-8
 <Esc>:wq
 
+# locale-gen
 # vim /etc/hostname
 鍵入 hostname
 <Esc>:wq

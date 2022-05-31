@@ -154,7 +154,7 @@ ibus-daemon -drx
 最常用的聲音控制軟體應屬 alsa:
 
 ```non
-$ sudo pacman -S alsa alsa-util
+$ sudo pacman -S alsa alsa-utils
 ```
 
 開啟混音裝置
@@ -291,4 +291,10 @@ $ yay -S tldr-cpp-git
 
 ```non
 $ yay -S google-chrome
+```
+
+### gnome 應用程式
+
+```non
+$ sudo pacman -S gedit gnome-system-monitor nautilus
 ```
