@@ -176,7 +176,7 @@ $ pulseaudio -D
 最簡單的方法是安裝 networkmanager，但是注意要先 disable 目前正在運行的網路管理工具 （如果有的話）。
 
 ```non
-$ sudo pacman -S networkmanager
+$ sudo pacman -S networkmanager network-manager-applet
 $ sudo systemctl enable NetworkManager
 $ sudo systemctl start NetworkManager
 ```
