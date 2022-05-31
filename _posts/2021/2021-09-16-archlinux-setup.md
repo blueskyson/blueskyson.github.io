@@ -296,5 +296,5 @@ $ yay -S google-chrome
 ### gnome 應用程式
 
 ```non
-$ sudo pacman -S gedit gnome-system-monitor nautilus
+$ sudo pacman -S gedit gnome-system-monitor gnome-calculator nautilus ntfs-3g
 ```
