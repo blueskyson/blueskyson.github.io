@@ -67,7 +67,7 @@ Bloom Filter 這樣的機制，存在一定的錯誤率。若今天想要找一�
   
 ## C++ 實作
 
-以下原始碼也放在我的 github repo [https://github.com/blueskyson/data-structure/tree/master/bloom-filter](https://github.com/blueskyson/data-structure/tree/master/bloom-filter)
+以下原始碼也放在我的 github repo [https://github.com/blueskyson/data-structure/tree/master/cpp/bloom-filter](https://github.com/blueskyson/data-structure/tree/master/cpp/bloom-filter)
 
 **bloom.h**
 
