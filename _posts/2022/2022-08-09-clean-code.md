@@ -40,7 +40,7 @@ tags:
 - 如果有一些機制可以將兩個參數換成一個參數時就要好利用，例如 `writeField(outStream, name)` 改成 `outStream.writeField(name)`。
 - 利用建立物件的方式也可以減少參數數量，例如 `makeCircle(double x, double y, double radius)` 可以改成 `makeCircle(Point center, double radius)`。
 - 避免 Side Effect，除非函式名稱有提及他會改變某些外部狀態，函式不該改變毫不相關的物件的狀態，也不該改變全域變數的狀態，例如：
-  ```
+  ```non
   bool checkPassword(string username, string password) {
       // ...
       Session.initialize();
@@ -49,7 +49,7 @@ tags:
   ```
   函式名稱只提到他會檢查密碼，但內部卻呼叫 `Session.initialize()`，造成 Side Effect，也違反了函式只做一件事的準則。解決方法為把 `Session.initialize()` 移去更外層的函式；或是將此函式改名為 `checkPasswordAndInitializeSession`。
 - 指令和查詢的分離，以下這個函式會設定某屬性的值，當設定成功會回傳 `true` 該屬性不存在回傳 `false`，導致詭異的敘述 `if (set("username", "unclebob"))...`。將指令與查詢分開後，改善為
-  ```
+  ```non
   if (attributeExists("username")) {
       setAttribute("unclebob");
   }
@@ -68,28 +68,28 @@ tags:
 
 - 法律型註解：`// Copyright (C) 2003 ... All rights reserved` 這樣的註解內如不該包含契約與法律條款，最好讓其參考標準的許可或外部文件。
 - 資訊型註解：下面這個例子說明了一個抽象方法的回傳值，這樣的資訊有時非常有用:
-  ```
+  ```non
   // Return an instance of the Responder being tested.
   protected abstract Responder responderInstance();
   ```
   這個註解其時可以融入函式命名中：
-  ```
+  ```non
   protected abstract Responder responderBeingTested();
   ```
 - 對意圖的解釋: 你可以了解程式設計師想做甚麼：
-  ```
+  ```non
   // This is our best attempt to get a race condition
   // by creating large number of threads.
   for (int i = 0; i < 2500; i++)
       // ...
   ```
 - 闡明：有時候函式屬於標準函式庫不能改程式碼時，加上闡明的註解就有用處：
-  ```
+  ```non
   assertTrue(a.compareTo(a) == 0)    // a == a
   ```
   但是闡明註解有風險，你必須保證他的正確性。
 - 對於後果的告誡：
-  ```
+  ```non
   // Don't run unless you have some time to kill
   public void _testWithReallyBigFile() {
       // ...
@@ -105,16 +105,16 @@ tags:
 - 日誌型註解：請用原始碼管控系統維護日誌。
 - 干擾型註解：陳述很明顯的事實，又不提供任何新的資訊。
 - 可怕的干擾：javadoc 等文檔生成器可能要求不必要的註解如：
-  ```
+  ```non
   /** The name. */
   private String name;
   ```
 - 位置的標誌物：不要過度使用橫幅來區隔程式碼區塊如：
-  ```
+  ```non
   // Section 1 //////////////////////
   ```
 - 右大括號後面的註解：有時候巢的層數太深，程式設計師會在右大括號後面寫：
-  ```
+  ```non
   try {
       while (1) {
       
