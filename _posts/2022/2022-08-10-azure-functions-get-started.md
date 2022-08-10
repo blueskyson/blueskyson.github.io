@@ -1,7 +1,7 @@
 ---
 title: "初探 Azure Functions"
-subtitle: "Azure Functions"
-excerpt: "Clean Code"
+subtitle: ""
+excerpt: "Azure Functions"
 layout: post
 author: "blueskyson"
 header-style: text
