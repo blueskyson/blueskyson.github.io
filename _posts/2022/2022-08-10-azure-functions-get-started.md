@@ -63,7 +63,7 @@ core                              2.39.0
 
 執行 `func init` 命令，在 FunctionApp 的資料夾中建立 .NET 的 Azure Functions 專案：
 
-```
+```non
 > func init FunctionApp --dotnet
 ```
 
@@ -71,7 +71,7 @@ FunctionApp 包含專案的設定檔，其中 `local.settings.json` 可能會包
 
 將 Function 新增至專案，其中 `HttpExample` 是 Function 的名稱，而 `HTTP trigger` 為方法的觸發方式。
 
-```
+```non
 > cd FunctionApp
 > func new --name HttpExample --template "HTTP trigger" --authlevel "anonymous"
 ```
@@ -80,7 +80,7 @@ FunctionApp 包含專案的設定檔，其中 `local.settings.json` 可能會包
 
 先在本機執行以下指令啟動 `HttpExample`:
 
-```
+```non
 > func start
 ```
 
@@ -125,7 +125,7 @@ host.json 中的設定值適用於 Azure Functions 實例中的所有函數。
 - 19 到 29 行: 先解析網址的是否包含 `name` 的鍵值，再以 json 格式解析 Request Body 是否有 `name` 的鍵值，然後產生 `Hello, {name}...` 字串。
 - 31 行: `OkObjectResult` 繼承自 `Microsoft.AspNetCore.Mvc.ObjectResult`，如果回應成功，將產生一個 Status 200 OK。
 
-```csharp=
+```csharp
 using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -166,7 +166,7 @@ namespace FunctionApp
 
 登入 Azure 帳戶:
 
-```
+```non
 > az login
 ```
 
@@ -174,7 +174,7 @@ namespace FunctionApp
 - `--name`: Resource Group 名稱。
 - `--location`: 指定 Resource Group 的區域。可以用 `az account list-locations` 查看可用區域代碼。
 
-```
+```non
 > az group create --name Functions-rg --location japanwest
 ```
 
@@ -184,7 +184,7 @@ namespace FunctionApp
 - `--resource-group`: Resource Group 名稱。
 - `--sku`: 選擇 Azure 的定價單位。 
 
-```
+```non
 > az storage account create --name jacklin --location japanwest --resource-group Functions-rg --sku Standard_LRS
 ```
 
@@ -196,7 +196,7 @@ namespace FunctionApp
 - `--name`: Function App 在 Azure 上的名稱，布署後透過 `https://{name}.azurewebsites.net` 來連上 Function App。
 - `--storage-account`: 此 Resource Group 中的 Storage Account 的字串值。若要用別的 Resource Group 的 Storage Account，則是用 Resource ID。
 
-```
+```non
 > az functionapp create --resource-group Functions-rg --consumption-plan-location japanwest --runtime dotnet --functions-version 4 --name jacklin-function --storage-account jacklin
 ```
 
@@ -204,7 +204,7 @@ namespace FunctionApp
 
 透過以下指令布署，其中 `jacklin-function` 為前面步驟中建立的 Azure Function App 的名稱；`--force` 略過布署前的檢查。
 
-```
+```non
 > func azure functionapp publish jacklin-function
 ...
 Functions in jacklin-function:
@@ -223,7 +223,7 @@ https://jacklin-function.azurewebsites.net/api/httpexample
 - 第 37 行: 定義新的 Function 的名稱為 `MyProduct`。
 - 第 39 到 44 行: 定義路徑為 `products/{category:alpha}/{id:int?}`，並且綁定網址與 `MyProductRun` 參數欄位中的 `category` 和 `id`。
 
-```csharp=
+```csharp
 using System;
 using System.IO;
 using System.Threading.Tasks;
@@ -284,13 +284,13 @@ namespace FunctionApp
 
 啟動 Function App:
 
-```
+```non
 > func start
 ```
 
 除了原先的 http://localhost:7071/api/HttpExample?name=xxxx 之外，還有一個新的 Function http://localhost:7071/api/products/xxxx/1 ，你可以嘗試把 `xxxx` 和 `1` 替換為其他值。
 
-```
+```non
 > func azure functionapp publish jacklin-function
 ...
 Functions in jacklin-function:
@@ -303,6 +303,6 @@ Functions in jacklin-function:
 
 ## 刪除所有 Azure 上的資源
 
-```
+```non
 > az group delete --name Functions-rg
 ```
