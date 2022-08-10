@@ -9,7 +9,7 @@ tags:
   - note
 ---
 
-![](https://i.imgur.com/zdnYoH2.jpg)
+![](https://raw.githubusercontent.com/blueskyson/image-host/master/2022/cleancode.jpg)
 
 
 註: 以下規則只代表這個學派多年所歸納下來的經驗守則，並不代表以下所有規則都是正確、不可違背的，請根據實際情況調整。
@@ -72,7 +72,7 @@ tags:
   // Return an instance of the Responder being tested.
   protected abstract Responder responderInstance();
   ```
-  這個註解其時可以融入函式命名中：
+  這個註解其實可以融入函式命名中：
   ```non
   protected abstract Responder responderBeingTested();
   ```
