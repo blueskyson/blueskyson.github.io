@@ -295,7 +295,7 @@ namespace FunctionApp
 ...
 Functions in jacklin-function:
     HttpExample - [httpTrigger]
-        Invoke url: https://jacklin-function.azurewebsites.net/api/httpexample1
+        Invoke url: https://jacklin-function.azurewebsites.net/api/httpexample
 
     MyProduct - [httpTrigger]
         Invoke url: https://jacklin-function.azurewebsites.net/api/products/{category:alpha}/{id:int?}
