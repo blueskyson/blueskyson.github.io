@@ -89,7 +89,7 @@ namespace CronApp
 
 執行程式:
 
-```
+```non
 > func start
 ```
 
@@ -101,7 +101,7 @@ namespace CronApp
 
 流程與 [初探 Azure Functions](https://blueskyson.github.io/2022/08/10/azure-functions-get-started/) 一樣:
 
-```
+```non
 > az login
 > az group create --name Functions-rg --location japanwest
 > az storage account create --name jacklin --location japanwest --resource-group Functions-rg --sku Standard_LRS
