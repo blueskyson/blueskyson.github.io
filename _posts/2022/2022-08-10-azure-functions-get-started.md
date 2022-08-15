@@ -1,7 +1,7 @@
 ---
-title: "初探 Azure Functions"
+title: "初探 HTTP-triggered Azure Functions"
 subtitle: ""
-excerpt: "Azure Functions"
+excerpt: "Azure Functions http trigger"
 layout: post
 author: "blueskyson"
 header-style: text
