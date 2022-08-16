@@ -16,7 +16,7 @@ tags:
 
 新增一個工作目錄:
 
-```
+```non
 $ mkdir custom-fluentd
 $ cd custom-fluentd
 ```
