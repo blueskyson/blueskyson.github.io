@@ -9,6 +9,8 @@ tags:
   - docker
 ---
 
+此範例會參考官方的範例來寫一個 Dockerfile 用以執行 FluentD，並且讓 FlentD 透過 HTTP 來接收 json 檔案，並直接輸出到 stdout。
+
 作業系統: Ubutu 20.04
 安裝 curl、docker、postman
 
