@@ -118,7 +118,7 @@ namespace CronApp
 
 Timer-Triggered Function 預設手動觸發的網址為:
 
-```
+```non
 https://<FunctionAppName>.azurewebsites.net/admin/functions/<FunctionName>
 ```
 
