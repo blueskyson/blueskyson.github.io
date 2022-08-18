@@ -38,8 +38,6 @@ core                              2.39.0
 
 ## 建立本機專案
 
-首先啟動 Azure Storage 的模擬器，因為 
-
 執行 `func init` 命令，在 CronApp 的資料夾中建立 .NET 的 Azure Functions 專案：
 
 ```non
