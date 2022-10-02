@@ -10,6 +10,8 @@ tags:
   - c++
 ---
 
+## 寫一個 segmentation fault 的範例程式。
+
 在 Ubuntu 預設是不會產生 core dump 的，想讓系統產生 core dump ，需要輸入以下指令:
 ```non
 $ ulimit -c unlimited
@@ -86,7 +88,7 @@ Sun 2022-10-02 19:52:44 CST 61547 1000 1000 SIGSEGV present  /home/lin/Desktop/t
 
 然後用 `coredumpctl debug myprogram` 讓 gdb 打開 core dump：
 
-```
+```non
 $ coredumpctl debug myprogram
            PID: 61547 (myprogram)
            UID: 1000 (lin)
@@ -166,7 +168,8 @@ int main() {
 出錯的地點在 `func()` 中，在 gdb 中使用 `bt` 來查看:
 
 ```non
-Open core dump by gdb or coredumpctl
+Open core dump by gdb or coredumpctl.
+
  . . .
 
 Program terminated with signal SIGSEGV, Segmentation fault.
