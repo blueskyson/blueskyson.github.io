@@ -82,7 +82,7 @@ $ sudo apt install systemd-coredump
 接著用 coredumpctl 列出 `myprogram` 這個程式的 core dump 紀錄：
 
 ```non
-TIME                          PID  UID  GID SIG     COREFILE EXE                            SIZE
+TIME                          PID  UID  GID SIG     COREFILE EXE                                SIZE
 Sun 2022-10-02 19:52:44 CST 61547 1000 1000 SIGSEGV present  /home/lin/Desktop/test/c/myprogram 18.1K
 ```
 
