@@ -1,7 +1,7 @@
 ---
 title: "敏捷開發與 SOLID 原則"
 subtitle: ""
-excerpt: "azure functions key vault"
+excerpt: "敏捷開發 SOLID SRP OCP LSP DIP ISP"
 layout: post
 author: "blueskyson"
 header-style: text
