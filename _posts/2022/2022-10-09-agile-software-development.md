@@ -119,21 +119,21 @@ enum ShapeType { circle, square };
 
 struct Shape
 {
-    ShapeType Type;
+    ShapeType Type;
 } 
 
 void DrawAllShapes(Shape* Shapes, int n)
 {
-    for (int i = 0; i < n; i++) {
-        switch(Shapes[i].Type) {
-        case square:
-            DrawSquare(Shapes[i]);
-            break;
-        case circle:
-            DrawCircle(Shapes[i]);
-            break;
-        }
-    }
+    for (int i = 0; i < n; i++) {
+        switch(Shapes[i].Type) {
+        case square:
+            DrawSquare(Shapes[i]);
+            break;
+        case circle:
+            DrawCircle(Shapes[i]);
+            break;
+        }
+    }
 }
 ```
 
@@ -142,25 +142,25 @@ void DrawAllShapes(Shape* Shapes, int n)
 ```csharp
 Interface Shape
 {
-    void Draw();
+    void Draw();
 } 
 
 class Square : Shape
 {
-    void Draw() { /* draw square here */ }
+    void Draw() { /* draw square here */ }
 }
 
 class Circle : Shape
 {
-    void Draw() { /* draw circle here */ }
+    void Draw() { /* draw circle here */ }
 }
 
 void DrawAllShapes(Shape* Shapes, int n)
 {
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < n; i++)
     {
-        Shapes[i].Draw();
-    }
+        Shapes[i].Draw();
+    }
 }
 ```
 
@@ -174,38 +174,38 @@ void DrawAllShapes(Shape* Shapes, int n)
 public class Rectangle
 {
     protected int height;
-    protected int width;
-    
-    public virtual int Height
-    {
-        get { return height; }
-        set { height = value; }
-    }
+    protected int width;
 
-    public virtual int Width
+    public virtual int Height
     {
-        get { return width; }
-        set { width = value; }
-    }
+        get { return height; }
+        set { height = value; }
+    }
+
+    public virtual int Width
+    {
+        get { return width; }
+        set { width = value; }
+    }
     
     public int Area
     {
-        get { return width * height; }
-    }
+        get { return width * height; }
+    }
 }
 
 public class Square : Rectangle {
-    public override int Height
+    public override int Height
     {
-        get { return height; }
-        set { width = height = value; }
-    }
+        get { return height; }
+        set { width = height = value; }
+    }
 
     public override int Width
     {
-        get { return width; }
-        set { width = height = value; }
-    }
+        get { return width; }
+        set { width = height = value; }
+    }
 }
 ```
 
@@ -215,8 +215,8 @@ public class Square : Rectangle {
 // Program.cs
 void stretch(Rectangle rect, int hValue, int vValue)
 {
-    rect.Width += hValue;
-    rect.Height += vValue;
+    rect.Width += hValue;
+    rect.Height += vValue;
 }
 
 Rectangle rectangle = new Rectangle { Width = 5, Height = 5 };
