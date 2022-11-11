@@ -108,21 +108,142 @@ public class Order
 
 如此一來，所有跟列印訂單有關的更改就限縮在個別的 IPrinter 實作中。
 
+## Open-Closed Principle (OCP) 開放封閉原則
+
+**對於擴展是開放的，對於修改是封閉的。**
+
+在下方範例中，`DrawAllShapes` 根據 `ShapeType` 來決定要畫出什麼圖案。每擴展一種形狀，就要修改一次 `DrawAllShape` 的 `switch` 區塊，增加了維護程式碼的複雜度。
+
+```csharp
+enum ShapeType { circle, square };
+
+struct Shape
+{
+    ShapeType Type;
+} 
+
+void DrawAllShapes(Shape* Shapes, int n)
+{
+    for (int i = 0; i < n; i++) {
+        switch(Shapes[i].Type) {
+        case square:
+            DrawSquare(Shapes[i]);
+            break;
+        case circle:
+            DrawCircle(Shapes[i]);
+            break;
+        }
+    }
+}
+```
+
+在下方範例，每擴展一種形狀，則完全不用更改 `DrawAllShape`，故符合 OCP 原則。
+
+```csharp
+Interface Shape
+{
+    void Draw();
+} 
+
+class Square : Shape
+{
+    void Draw() { /* draw square here */ }
+}
+
+class Circle : Shape
+{
+    void Draw() { /* draw circle here */ }
+}
+
+void DrawAllShapes(Shape* Shapes, int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        Shapes[i].Draw();
+    }
+}
+```
+
+## Liskov Substitution Principle (LSP) Liskov 替換原則
+
+**子類別應該完全符合父類別的特性。**
+
+在下方範例中，儘管邏輯上正方形可以被視為長方形的特例，但是在程式實作中，如果意外將正方形的物件視為長方形來使用，就有許多衍伸問題，例如正方形的 Width 和 Height 被誤設為不同的值。
+
+```csharp
+public class Rectangle
+{
+    protected int height;
+    protected int width;
+    
+    public virtual int Height
+    {
+        get { return height; }
+        set { height = value; }
+    }
+
+    public virtual int Width
+    {
+        get { return width; }
+        set { width = value; }
+    }
+    
+    public int Area
+    {
+        get { return width * height; }
+    }
+}
+
+public class Square : Rectangle {
+    public override int Height
+    {
+        get { return height; }
+        set { width = height = value; }
+    }
+
+    public override int Width
+    {
+        get { return width; }
+        set { width = height = value; }
+    }
+}
+```
+
+套用上面的 `Rectangle` 與 `Square`，以下為一個違反 LSP 而造成 Bug 的案例：
+
+```csharp
+// Program.cs
+void stretch(Rectangle rect, int hValue, int vValue)
+{
+    rect.Width += hValue;
+    rect.Height += vValue;
+}
+
+Rectangle rectangle = new Rectangle { Width = 5, Height = 5 };
+Square square = new Square { Width = 5 };
+
+Console.WriteLine(rectangle.Area);
+Console.WriteLine(square.Area);
+Console.WriteLine("---");
+stretch(rectangle, 1, 1);
+stretch(square, 1, 1);
+Console.WriteLine(rectangle.Area);
+Console.WriteLine(square.Area);
+```
+
+輸出為：
+
+```non
+25
+25
 ---
+36
+49
+```
+
+很明顯的 `square` 的長寬增加 1 後，面積應該要是 36，卻被誤算為 49。
 
 > *待續*
-> ## Open-Closed Principle (OCP) 開放封閉原則
-> 
-> **對於擴展是開放的，對於修改是封閉的。**
-> 
-> 在左側範例，每擴展一種形狀就要修改一次 DrawAllShape 的 switch 區塊。右側範例則完全不用更改 DrawAllShape，符合 OCP 原則。
-> 
-> ## Liskov Substitution Principle (LSP) Liskov 替換原則
-> 
-> **子類別應該完全符合父類別的特性。**
-> 
-> 在下方範例中，儘管邏輯上正方形可以被視為長方形的特例，但是在程式實作中，如果意外將正方形的物件視為長方形來使用，就有許多衍伸問題，例如 Width 和 Height 被設為不同的值。
-> 
 > ## Dependency-Inversion Principle (DIP) 依賴反向原則
 > 
 > **1. 高層模組不應該直接依賴低層模組，它們都應該依賴抽象層。**
