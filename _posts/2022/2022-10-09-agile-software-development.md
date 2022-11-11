@@ -187,7 +187,7 @@ public class Rectangle
         get { return width; }
         set { width = value; }
     }
-    
+
     public int Area
     {
         get { return width * height; }
