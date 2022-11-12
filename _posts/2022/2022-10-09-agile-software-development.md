@@ -145,12 +145,12 @@ Interface Shape
     void Draw();
 } 
 
-class Square : Shape
+public class Square : Shape
 {
     void Draw() { /* draw square here */ }
 }
 
-class Circle : Shape
+public class Circle : Shape
 {
     void Draw() { /* draw circle here */ }
 }
@@ -242,20 +242,86 @@ Console.WriteLine(square.Area);
 ```
 
 很明顯的 `square` 的長寬增加 1 後，面積應該要是 36，卻被誤算為 49。
+## Dependency-Inversion Principle (DIP) 依賴反向原則
 
-> *待續*
-> ## Dependency-Inversion Principle (DIP) 依賴反向原則
-> 
-> **1. 高層模組不應該直接依賴低層模組，它們都應該依賴抽象層。**
-> 
-> **2. 抽象層不應該因為低層模組而更改，反而低層模組要按照抽象層來實作。**
-> 
-> 右圖一，高層的 Policy 依賴 Mechanism，Mechanism 依賴 Utility，因此 Policy 遞移性地依賴 Utility。如此設計的缺點是，當低層模組變動時，會直接影響所有遞移性依賴的高層模組，使高層模組很可能也要跟著變動。
-> 右圖二，所有模組都反過來依賴一個抽象介面，低層模組實作介面、高層模組透過介面使用低層模組。
-> 
-> ## Interface Segregation Principle (ISP) 介面隔離原則
-> 
-> **不應強迫子類別去依賴它不使用的方法。**
-> 
-> 下左圖 IPets 的範例為了兼容 Dog 和 Cat 類別，所以定義了 bark() 方法，導致 Cat 類別必須也提供一個 bark() 的實作，導致了不必要的耦合。
-> 下右圖把 IPetDogs 和 IPetCats 隔離出來，讓 Dog 與 Cat 各自實作 bark() 和 meow()。
+**1. 高層模組不應該直接依賴低層模組，它們都應該依賴抽象層。**
+
+**2. 抽象層不應該因為低層模組而更改，反而低層模組要按照抽象層來實作。**
+
+下方程式碼中，高層的 `Article` 依賴低層的 `ConsolePrinter`。如此設計的缺點是，當低層模組變動時，會直接影響所有遞移性依賴的高層模組，使高層模組很可能也要跟著變動，比如 ConsolePrinter 增加了一些功能，並改名為 `ColorPrinter` 時，`Article` 中的 `ConsolePrinter` 也必須修正：
+
+```csharp
+public class ConsolePrinter
+{
+    public void Print(string text)
+    {
+        Console.WriteLine(text);
+    }
+}
+
+public class Article
+{
+    private string text;
+    public ConsolePrinter printer;
+    
+    public Article(string text)
+    {
+        this.text = text;
+        this.printer = new ConsolePrinter();
+    }
+
+    public void Print()
+    {
+        printer.Print(text);
+    }
+}
+```
+
+下方程式碼中，`Article` 與 `ConsolePrinter` 都反過來依賴抽象介面 `IPrinter`，如此一來，只要 `ConsolePrinter` 按照 `IPrinter` 的介面來實作，就不會影響到 `Article`：
+
+```csharp
+public interface IPrinter
+{
+    void Print(string text);
+}
+
+public class ConsolePrinter
+{
+    public void Print(string text)
+    {
+        Console.WriteLine(text);
+    }
+}
+
+public class Article
+{
+    private string text;
+    public IPrinter printer;
+    
+    public Article(string text)
+    {
+        this.text = text;
+        this.printer = new ConsolePrinter();
+    }
+
+    public void Print()
+    {
+        printer.Print(text);
+    }
+}
+```
+
+舉另外一個例子：下圖一，高層的 `Policy` 依賴 `Mechanism`，`Mechanism` 依賴 `Utility`，因此 `Policy` **遞移性依賴** `Utility`。當低層模組變動時，會直接影響所有遞移性依賴的高層模組，使高層模組也有很大的可能需要要跟著修改。
+
+下圖二則使用了 DIP 原則，所有模組都反過來依賴一個抽象介面，低層模組實作介面、高層模組透過介面使用低層模組。
+
+![](https://raw.githubusercontent.com/blueskyson/image-host/master/2022/dip.png)
+## Interface Segregation Principle (ISP) 介面隔離原則
+
+**不應強迫子類別去依賴它不使用的方法。**
+
+下左圖 `IPets` 的範例為了兼容 `Dog` 和 `Cat` 類別，所以定義了 `bark()` 方法，導致 `Cat` 類別必須也提供一個 `bark()` 的實作，導致了不必要的耦合。
+
+下右圖把 `IPetDogs` 和 `IPetCats` 從 `IPets` 中隔離出來，讓 `Dog` 與 `Cat` 各自實作 `bark()` 和 `meow()`，這樣就讓貓狗可以用的方法區隔開來，避免不必要的實作與提升可讀性。
+
+![](https://raw.githubusercontent.com/blueskyson/image-host/master/2022/isp.png)
