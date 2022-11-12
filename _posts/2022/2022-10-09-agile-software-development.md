@@ -11,7 +11,7 @@ tags:
 
 ## 敏捷開發
 
-敏捷開發是一種用來應對快速變化的需求的開發方式，其強調軟體工程人員與業務人員面對面的溝通、頻繁交付可用的版本，使專案有彈性以因應不可預期的變化。常常聽到的 Scrum 與 Kanban 就是用來實敏節開發的框架。
+敏捷開發是一種用來應對快速變化的需求的開發方式，其強調軟體工程人員與業務人員面對面的溝通、頻繁交付可用的版本，使專案有彈性以因應不可預期的變化。常常聽到的 Scrum 與 Kanban 就是用來實現敏捷開發的框架。
 
 敏捷開發最重要的四個方針：
 
@@ -24,15 +24,15 @@ tags:
 
 **一個類別應只負責一個職責。**
 
-如果一個類別承擔過多職責 (高耦合)，當需要修改或新增職責時，容易使得所有依賴此職責的地方都需要被修改，提高維護難度。透過分離職責來降低耦合，當需要新增、更改職責時，只需依照 interface 的定義來修改。
+如果一個類別承擔過多職責 (高耦合)，當需要修改或新增職責時，容易使得所有依賴此類別的地方都需要被修改，提高維護難度。透過分離職責來降低耦合，當需要新增、更改職責時，只需依照 interface 的定義來修改。
 
 下方舉一個例子，首先定義一個訂單的資料結構，它可以透過影印機輸出。
 
 ```csharp
 public class Order
 {
-    private string Id;
-    private double Price;
+    private string id;
+    private double price;
 
     public void Print()
     {
@@ -41,13 +41,13 @@ public class Order
 }
 ```
 
-分析 Order 這個類別，它應該只專注處理地單的資訊，`Print()` 顯得超出它的職責了，假設今天有了新需求：透過 PDF 輸出，此時 `Order` 類別會變成：
+分析 `Order` 這個類別，它應該只專注處理地單的資訊，`Print()` 顯得超出它的職責了，假設今天有了新需求：透過 PDF 輸出，此時 `Order` 類別會變成：
 
 ```csharp
 public class Order
 {
-    private string Id;
-    private double Price;
+    private string id;
+    private double price;
 
     public void Print()
     {
@@ -61,9 +61,9 @@ public class Order
 }
 ```
 
-這時所有呼叫 `PrintByPrinter` 的地方都必須跟著改寫成相容於 `PrintByPdfExporter` 的邏輯，有許多處程式都必須修正。
+這時所有呼叫 `Print` 的地方都必須跟著改寫成相容於 `PrintByPdfExporter` 的邏輯，有許多處程式都必須修正。
 
-現在套用 SRP 原則，定義一個 interface 叫 IPrinter：
+現在套用 SRP 原則，定義一個 interface 叫 `IPrinter`，並讓 `PdfExporter` 和 `Printer` 實作 `IPrinter`：
 
 ```csharp
 public interface IPrinter
@@ -89,19 +89,19 @@ public class Printer : IPrinter
 
 public class Order
 {
-    private string Id;
-    private double Price;
-    private IPrinter Printer;
+    private string id;
+    private double price;
+    private IPrinter printer;
 
     public Order()
     {
-        this.Printer = new PdfExporter();
+        this.printer = new PdfExporter();
         // this.Printer = new Printer();
     }
 
     public Print()
     {
-        this.Printer.Print(this.Id, this.Price);
+        this.printer.Print(this.Id, this.Price);
     }
 }
 ```
@@ -115,22 +115,22 @@ public class Order
 在下方範例中，`DrawAllShapes` 根據 `ShapeType` 來決定要畫出什麼圖案。每擴展一種形狀，就要修改一次 `DrawAllShape` 的 `switch` 區塊，增加了維護程式碼的複雜度。
 
 ```csharp
-enum ShapeType { circle, square };
+enum ShapeType { Circle, Square };
 
 struct Shape
 {
     ShapeType Type;
 } 
 
-void DrawAllShapes(Shape* Shapes, int n)
+void DrawAllShapes(Shape* shapes, int n)
 {
     for (int i = 0; i < n; i++) {
-        switch(Shapes[i].Type) {
-        case square:
-            DrawSquare(Shapes[i]);
+        switch(shapes[i].Type) {
+        case Square:
+            DrawSquare(shapes[i]);
             break;
-        case circle:
-            DrawCircle(Shapes[i]);
+        case Circle:
+            DrawCircle(shapes[i]);
             break;
         }
     }
@@ -155,11 +155,11 @@ public class Circle : Shape
     void Draw() { /* draw circle here */ }
 }
 
-void DrawAllShapes(Shape* Shapes, int n)
+void DrawAllShapes(Shape* shapes, int n)
 {
     for (int i = 0; i < n; i++)
     {
-        Shapes[i].Draw();
+        shapes[i].Draw();
     }
 }
 ```
