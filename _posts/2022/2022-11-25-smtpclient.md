@@ -19,8 +19,6 @@ tags:
 - receiver@gmail.com: 收信人的郵箱。
 
 ```csharp
-
-```csharp
 using System.Net.Mail;
 using System.Net;
 
