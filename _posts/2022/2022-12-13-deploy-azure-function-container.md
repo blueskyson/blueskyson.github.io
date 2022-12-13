@@ -1,7 +1,7 @@
 ---
 title: "透過 Azure Container Registry 佈署 Azure Functions"
 subtitle: ""
-excerpt: "azure functions application insight log kusto"
+excerpt: "azure functions container registry identity"
 layout: post
 author: "blueskyson"
 header-style: text
@@ -38,7 +38,7 @@ azurite -l azurite_workspace
 func start
 ```
 
-測試完成後，打包成鏡像檔並執行，注意執行時仍需要令 `AzureWebJobsStorage` 為 `UseDevelopmentStorage=true` 並且透過 Azurite 來模擬儲存體：
+測試完成後，打包成鏡像檔並執行，注意用 docker 執行時，需要令 `AzureWebJobsStorage` 為 `UseDevelopmentStorage=true` 並且透過 Azurite 來模擬儲存體。將你的 Azure Container Registry 的名稱填入下方指令區塊中的 `ACR_NAME` 環境變數：
 
 ```non
 export ACR_NAME=<your azure container registry name>
@@ -47,6 +47,8 @@ docker build -t ${ACR_NAME}.azurecr.io/container-app:latest .
 docker run --name container-app -p 8000:80 --network host \
     -e AzureWebJobsStorage="UseDevelopmentStorage=true" ${ACR_NAME}.azurecr.io/container-app:latest
 ```
+
+特別注意目前 Azure Functions 的容器無法直接在 Mac M1 上執行。
 
 順帶一提，Azurite 也有提供 Docker 鏡像，可以透過以下指令直接執行：
 
@@ -68,7 +70,7 @@ docker push ${ACR_NAME}.azurecr.io/container-app:latest
 
 給 Functon App 一個 Container Registry 的帳號密碼，讓 Function App 透過這組帳號密碼來登入 Container Registry 並拉取鏡像檔。
 
-首先在 Azure Portal 中創建一個 Resource Group，然後用以下指令
+首先在 Azure Portal 中創建一個資源群組，將此資源群組的名稱填入下方指令區塊中的 `RG_NAME` 環境變數，將 Azure Function 所需的資源創建、佈署在這個資源群組中：
 
 ```non
 export ACR_NAME=<azure container registry name>
