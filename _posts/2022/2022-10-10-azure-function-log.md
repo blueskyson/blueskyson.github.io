@@ -27,7 +27,7 @@ traces
 
 ![](https://raw.githubusercontent.com/blueskyson/image-host/master/2022/azure-portal-application-insights-query-function-execution-log-trace.png)
 
-另一個我比較常用的語法是用 regex 查詢，以下是查詢開頭為 `"Executing "` 或 `"Executed "` 的 log 的:
+另一個我比較常用的語法是用 regex 查詢，以下是查詢開頭為 `"Executing"` 或 `"Executed"` 的 log:
 
 ```sql
 traces
