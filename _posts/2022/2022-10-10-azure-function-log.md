@@ -26,3 +26,10 @@ traces
 選好 **Time Range** 後按下 **Run**，即可秀出開頭為 `"Executing "` 的 log：
 
 ![](https://raw.githubusercontent.com/blueskyson/image-host/master/2022/azure-portal-application-insights-query-function-execution-log-trace.png)
+
+另一個我比較常用的語法是用 regex 查詢，以下是查詢開頭為 `"Executing "` 或 `"Executed "` 的 log 的:
+
+```sql
+traces
+| where message matches regex "^(Executing|Executed)"
+```
