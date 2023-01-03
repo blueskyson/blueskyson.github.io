@@ -11,12 +11,12 @@ tags:
   - csharp
 ---
 
-環境: wnidows 10, Visual Studio 2019, .NET Core 3.1
+環境: wnidows 10, Visual Studio 2019, .NET Core 3.1  
 測試用開發版: stm32f407g, STM32CubeIDE 1.8.0
 
 ## 專案初始化
 
-首先參考[在 stm32f407g 使用 lis302dl 三軸加速規](https://blueskyson.github.io/2022/04/29/stm32f407g-lis302dl/)讓開發版持續輸出三軸加速規的訊息，或是自己準備一個可以讓 COM 連接埠持續齣齣訊息的環境。
+首先參考[在 stm32f407g 使用 lis302dl 三軸加速規](https://blueskyson.github.io/2022/04/29/stm32f407g-lis302dl/)讓開發版持續輸出三軸加速規的訊息，或是自己準備一個可以讓 COM 連接埠持續輸出訊息的環境。
 
 接下來打開 Visual Studio 選擇 `.NET Core 3.1` 以及 `Console Application` 初始化一個終端機專案，我將專案命名為 Uart_Console_App。
 
