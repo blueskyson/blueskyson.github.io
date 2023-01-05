@@ -49,16 +49,16 @@ CMD test test.py
 
 ## Docker 掃描工具
 
-參考來源：https://www.prplbx.com/resources/blog/docker-part2/
+參考來源：[https://www.prplbx.com/resources/blog/docker-part2/](https://www.prplbx.com/resources/blog/docker-part2/)
 
 ### 1. Docker Bench for Security
 
-Git: https://github.com/docker/docker-bench-security
+Git: [https://github.com/docker/docker-bench-security](https://github.com/docker/docker-bench-security)
 
 由 Docker 官方維護的專案，透過 shell script 或是 container 執行掃描，掃瞄範圍涵蓋 Containerd、Docker Daemon、所有他找的到的 Dockerfile、Image、Container。也可以只選擇掃描 image 和 container 就好。
 
 ```bash
-git clone https://github.com/docker/docker-bench-security.git
+git clone [https://github.com/docker/docker-bench-security.git](https://github.com/docker/docker-bench-security.git)
 cd docker-bench-security
 sudo sh docker-bench-security.sh                 # 方法 1
 docker-compose run --rm docker-bench-security    # 方法 2
@@ -225,7 +225,7 @@ docker run aquasec/trivy
 
 ### 4. Snyk
 
-https://snyk.io/learn/docker-security-scanning/
+[https://snyk.io/learn/docker-security-scanning/](https://snyk.io/learn/docker-security-scanning/)
 
 Snyk 是開發者資安平台，提供 IDE、GitHub、Docker、ACR 等的整合工具，在 Docker 中，Snyk 被整合在 `docker scan` 中。ACR 整合的文件在[這邊](https://docs.snyk.io/products/snyk-container/image-scanning-library/acr-image-scanning)，他可以從 snyk 提供的 web 界面查看存放在 ACR 的映像檔的漏洞。
 
@@ -251,14 +251,14 @@ Pricing: DockerHub 帳號每個月 10 次免費、Snyk 免費帳號每個月 100
 
 Powerd by Qualys。
 
-Pricing：https://azure.microsoft.com/zh-tw/pricing/details/defender-for-cloud/
+Pricing：[https://azure.microsoft.com/zh-tw/pricing/details/defender-for-cloud/](https://azure.microsoft.com/zh-tw/pricing/details/defender-for-cloud/)
 
-詳見官網：https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-containers-vulnerability-assessment-azure
+詳見官網：[https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-containers-vulnerability-assessment-azure](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-containers-vulnerability-assessment-azure)
 
 啟用方式：
-- https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-containers-vulnerability-assessment-azure
-- https://learn.microsoft.com/en-us/azure/defender-for-cloud/kubernetes-workload-protections
-- https://www.youtube.com/watch?v=IHNdJnDttoU
+- [https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-containers-vulnerability-assessment-azure](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-containers-vulnerability-assessment-azure)
+- [https://learn.microsoft.com/en-us/azure/defender-for-cloud/kubernetes-workload-protections](https://learn.microsoft.com/en-us/azure/defender-for-cloud/kubernetes-workload-protections)
+- [https://www.youtube.com/watch?v=IHNdJnDttoU](https://www.youtube.com/watch?v=IHNdJnDttoU)
 
 首先啟用訂用帳戶的 Microsoft Defender for Cloud，然後進入 Microsoft Defender for Cloud，進到 Environment settings -> (Azure > Tenant Root Group > subscription name) -> (Containers 右側 Partial Settings) 啟用 Defender DaemonSet
 
