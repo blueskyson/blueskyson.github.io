@@ -1,12 +1,12 @@
 ---
 title: "Ubuntu 上 Microsoft PPA 與 apt 的 dotnet 衝突的解法"
 subtitle: ""
-excerpt: "flutter doctor Java version"
+excerpt: "ubuntu apt dotnet fxr"
 layout: post
 author: "blueskyson"
 header-style: text
 tags:
-  - others
+  - csharp
 ---
 
 因為最近 dotnet 被加入了 apt 官方的 PPA 中，如果在先前在 Ubuntu 上安裝了 Microsoft PPA 的 dotnet，就會發生衝突：
