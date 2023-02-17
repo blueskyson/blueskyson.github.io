@@ -20,7 +20,6 @@ tags:
 - Azure Functions Core Tools 4.x 版
 - Azurite 儲存體模擬器
 - Azure CLI 2.4.0 版或更新版本。
-- Docker
 
 ## 建立本機專案
 
