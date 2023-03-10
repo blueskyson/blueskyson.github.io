@@ -1,5 +1,5 @@
 ---
-title: "Ubuntu 上 Microsoft PPA 與 apt 的 dotnet 衝突的解法"
+title: "Microsoft 與 apt 存放庫的 dotnet 衝突的解法"
 subtitle: ""
 excerpt: "ubuntu apt dotnet fxr"
 layout: post
