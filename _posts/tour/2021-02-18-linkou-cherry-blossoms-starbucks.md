@@ -1,12 +1,12 @@
 ---
-title: "林口櫻花星巴克照片"
+title: "林口櫻花星巴克"
 subtitle: ""
 excerpt: "林口 櫻花 星巴克"
 layout: post
 author: "blueskyson"
 header-style: text
 tags:
-  - others
+  - tour
 ---
 
 分享一些照片，拍攝時間: 2021-02-06
