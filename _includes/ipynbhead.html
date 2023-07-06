@@ -27,7 +27,7 @@
     {% if page.header-img %}
     <meta property="og:image" content="{{ site.url }}/{{ page.header-img }}">
     {% else %}
-    <meta property="og:image" content="{{ site.url }}{{ site.sidebar-avatar }}">
+    <meta property="og:image" content="{{ site.url }}{{ site.og-image }}">
     {% endif %}
     
     <title>{% if page.title %}{{ page.title }} - {{ site.SEOTitle }}{% else %}{{ site.SEOTitle }}{% endif %}</title>

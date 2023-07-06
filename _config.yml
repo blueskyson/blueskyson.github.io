@@ -71,7 +71,8 @@ google_site_verification: "me-pg4sHXz3RiwcnxRxO-U1c9ILdDC2N1_tsHcLnriI"
 sidebar: true                           # whether or not using Sidebar.
 sidebar-about-description: "我太難了"
 sidebar-avatar: /img/avatar.png         # use absolute URL, seeing it's used in both `/` and `/about/`
-
+og-image: /img/head-bg.jpg
+    
 # Featured Tags
 featured-tags: true                     # whether or not using Feature-Tags
 featured-condition-size: 1              # A tag will be featured if the size of it is more than this condition value
