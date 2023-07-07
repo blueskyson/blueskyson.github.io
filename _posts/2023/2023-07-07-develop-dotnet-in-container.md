@@ -11,7 +11,7 @@ tags:
   - linux
 ---
 
-Ubuntu 22.04 僅支持 OpenSSL 3，使用者只能安裝 .NET 6.0，它不支持.NET CORE 3.1 或 2.0。
+Ubuntu 22.04 僅支持 OpenSSL 3，使用者只能安裝 .NET 6.0，它不支持 .NET CORE 3.1 或 2.0。
 
 在新版 Ubuntu 看似無法開發 .NET 3.1，但我想到既然 Docker 可以正常在 Ubuntu 22.04 執行 .NET 3.1 的容器，那我應該也可以透過 Docker 容器來開發 .NET 3.1 的應用程式。幸好微軟官方真的有提供開發用的映像檔，我們甚至不需要自己撰寫 Dockerfile 來設定環境。
 
@@ -52,4 +52,11 @@ vscode ➜ / $ sudo passwd root
 
 ```non
 vscode ➜ / $ sudo apt install neofetch
+```
+
+## 設定 Entity Framework 與指定環境
+
+```
+$ dotnet tool install --global dotnet-ef --version 3.1.3
+$ dotnet run --environment=Development
 ```
