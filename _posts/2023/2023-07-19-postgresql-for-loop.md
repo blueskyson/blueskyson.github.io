@@ -15,10 +15,10 @@ tags:
 ```sql
 do $$
 BEGIN
-	FOR i IN 1..300 LOOP
-		INSERT INTO "TableName" ("Id", "ColumnName")
-		VALUES (i, 'YourData');
-	END LOOP;
+    FOR i IN 1..300 LOOP
+        INSERT INTO "TableName" ("Id", "ColumnName")
+        VALUES (i, 'YourData');
+    END LOOP;
 END;
 $$;
 ```
