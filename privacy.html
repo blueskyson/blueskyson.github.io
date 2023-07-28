@@ -1,0 +1,12 @@
+---
+layout: page
+title: "Privacy"
+description: ""
+comment: false
+header-style: text
+---
+
+<div class="zh post-container">
+    {% capture privacy %}{% include privacy/privacy.md %}{% endcapture %}
+    {{ privacy | markdownify }}
+</div>
