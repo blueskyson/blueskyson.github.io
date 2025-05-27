@@ -132,5 +132,5 @@ $ ssh user@192.168.122.11
 
 ## 參考資料
 
-- [How To install QEMU KVM & VirtManager on Ubuntu || Run Virtual Machines On Ubuntu](https://www.youtube.com/watch?v=4m6eHhPypWI)
+- [How To install QEMU KVM & VirtManager on Ubuntu Run Virtual Machines On Ubuntu](https://www.youtube.com/watch?v=4m6eHhPypWI)
 - [KVM/libvirt: How to configure static guest IP addresses on the virtualisation host](https://serverfault.com/questions/627238/kvm-libvirt-how-to-configure-static-guest-ip-addresses-on-the-virtualisation-ho)
