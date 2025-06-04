@@ -15,14 +15,14 @@ QEMU/KVM，簡稱 Quick Emulator，是一套開源的虛擬化解決方案，結
 
 開啟 libvirtd 虛擬化服務
 
-```
+```non
 $ sudo systemctl enable libvirtd.service
 $ sudo systemctl start libvirtd.service
 ```
 
 安裝 QEMU/KVM 相關套件，重新開機
 
-```
+```non
 $ sudo apt update
 $ sudo apt install qemu-kvm virt-manager bridge-utils
 $ sudo reboot now
@@ -32,7 +32,7 @@ $ sudo reboot now
 - libvirt：讓使用者能與 libvirt daemon 互動，控制虛擬機的建立、啟動、暫停等操作。
 - libvirt-qemu 或 libvirt-kvm：讓使用者能夠與 QEMU/KVM 後端直接互動，包括存取虛擬機映像檔、虛擬網路等。
 
-```
+```non
 $ groups 
 lin adm cdrom sudo dip plugdev users lpadmin libvirt
 $ sudo useradd -g $USER libvirt
@@ -65,7 +65,7 @@ QEMU/KVM 預設使用 NAT 模式來提供虛擬機的網路連線，並會隨機
 
 ![](https://raw.githubusercontent.com/blueskyson/image-host/refs/heads/master/2025/qemu-kvm-2.png)
 
-```
+```non
 $ virsh dumpxml vm1 | grep 'mac address'
      <mac address='52:54:00:e4:de:fb'/>
 $ virsh dumpxml vm2 | grep 'mac address'
@@ -78,7 +78,7 @@ $ virsh dumpxml vm4 | grep 'mac address'
 
 查看你欲修改的 NAT 網路（一般就是 `default`）：
 
-```
+```non
 $ virsh  net-list
  Name      State    Autostart   Persistent
 --------------------------------------------
@@ -87,7 +87,7 @@ $ virsh  net-list
 
 編輯 `/etc/libvirt/qemu/networks/default.xml` 檔案：
 
-```
+```non
 $ virsh  net-edit default
 ```
 
@@ -119,14 +119,14 @@ $ virsh  net-edit default
 
 儲存並關閉檔案後，重新啟動 NAT 網路：
 
-```
-virsh  net-destroy default
-virsh  net-start default
+```non
+$ virsh  net-destroy default
+$ virsh  net-start default
 ```
 
 重新啟動虛擬機即可。如果虛擬機有啟用 OpenSSH Server，則可以透過 SSH 連線到虛擬機：
 
-```
+```non
 $ ssh user@192.168.122.11
 ```
 
