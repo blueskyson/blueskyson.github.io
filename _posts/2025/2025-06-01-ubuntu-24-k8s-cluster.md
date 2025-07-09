@@ -9,7 +9,7 @@ tags:
   - linux
 ---
 
-在本教學中，我們將會在 Ubuntu 24.04 Server 上安裝並架設一個四節點的 Kubernetes 叢集（包含一個控制節點與三個工作節點）。
+在本教學中，我們將會在 Ubuntu 24.04 Server 上安裝並架設一個兩節點的 Kubernetes 叢集（包含一個控制節點與三個工作節點）。
 
 Kubernetes 叢集由控制節點（Control Plane）與工作節點（Worker Nodes）所組成。控制節點負責整體叢集的管理與調度，而工作節點則實際執行應用程式容器（Pods）。本篇將逐步帶你完成所有必要設定，從系統安裝、節點配置，到基本應用部署。
 
