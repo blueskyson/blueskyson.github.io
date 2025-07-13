@@ -47,7 +47,7 @@ cd linux
 make tinyconfig
 ```
 
-這會產生 `.config` 設定檔，啟用最小必要功能。適合學習用途，編譯速度也快。
+這會產生 `.config` 設定檔，啟用最小必要功能。
 
 ## 編譯 Linux Kernel
 
@@ -138,7 +138,7 @@ qemu-system-x86_64 -kernel arch/x86/boot/bzImage
 
 終端機中出現了核心啟動訊息，雖然最後顯示 `panic - not syncing: No working init found`，但至少我們已經成功啟動了核心並看到輸出。
 
-要解決這個問題，你需要提供一個有效的 `init` 程序（如 `systemd` 或 `busybox`）。礙於篇幅不再深入討論。
+要解決這個問題，你需要提供一個有效的 `init` 程序（如 `systemd` 或 `busybox`）。可參考另一篇文章 [靜態編譯 C 語言 init 程式，搭配 initramfs 啟動自編譯 Linux Kernel](/2025/07/13/tiny-linux-init)。
 
 如果你想恢復到預設的 `tinyconfig` 設定來做其他實驗，可以使用：
 
