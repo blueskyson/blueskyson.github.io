@@ -88,3 +88,7 @@ $ Sorry, I don't know how to do that.
 ```
 
 每次輸入都會回應這句話，因為這就是你設計的最小的 shell。
+
+## 參考資料
+
+- [Building a tiny Linux from scratch](https://blinry.org/tiny-linux/)
