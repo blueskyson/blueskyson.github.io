@@ -71,6 +71,8 @@ make menuconfig
 2. Executable file formats ---> Kernel support for ELF binaries
 3. Processor type and features ---> 64-bit kernel
 
+再編譯一次。
+
 ## 使用 QEMU 啟動
 
 ```bash
