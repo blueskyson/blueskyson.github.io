@@ -11,7 +11,7 @@ tags:
 
 本篇文章記錄我在 Ubuntu 24.04 機器上撰寫編譯 init 程式、製作 initramfs 並使用 QEMU 搭配 bzImage 啟動 Linux kernel v6.12。
 
-請先參考 [在 Ubuntu 24 編譯精簡 Linux Kernel](/2025/07/09/boot-tiiny-linux) 文章，完成 Linux Kernel 的編譯。
+請先參考 [在 Ubuntu 24 編譯精簡 Linux Kernel](/2025/07/09/boot-tiny-linux) 文章，完成 Linux Kernel 的編譯。
 
 ## 建立 C 專案結構
 
