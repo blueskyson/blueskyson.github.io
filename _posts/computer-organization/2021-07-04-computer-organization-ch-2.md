@@ -596,3 +596,612 @@ L1: addi $a0, $a0, -1      # n - 1
 ### Stack Allocation 與 Frame Pointer
 
 Stack 在程序呼叫時配置。由於 \$sp 在程序執行過程中可能改變，用 \$sp 的 offset 存取區域變數會比較不方便。因此使用 **frame pointer (\$fp)** 指向 procedure frame (activation record) 的第一個 word，作為穩定的 base register 來存取區域資料。
+
+## Byte/Halfword 操作
+
+MIPS 的 byte/halfword load/store 指令常用於**字串處理** (string processing)。
+
+### lb (load byte)
+
+```python
+lb $t0, 0($sp)    # load byte with sign extension
+```
+
+- 從位址 \$sp + 0 載入一個 byte 到 \$t0
+- **Sign extend** 到 32 bits
+
+範例:
+
+```
+記憶體位址 $sp → 00000000000000000000000110000000
+                 11111111111111111111111110000000
+
+執行 lb $t0, 0($sp) 後:
+$t0 = 11111111111111111111111110000000  (sign extended)
+```
+
+### sb (store byte)
+
+```python
+sb $t0, 0($sp)    # store byte
+```
+
+- 將 \$t0 的**最右邊 byte** 存入位址 \$sp + 0
+
+範例:
+
+```
+$t0 = 00000000000000000000000110000000
+
+執行 sb $t0, 0($sp) 後:
+記憶體位址 $sp → 11111111111111111111111110000000
+```
+
+### lbu (load byte unsigned)
+
+```python
+lbu $t0, 0($sp)   # load byte without sign extension
+```
+
+- 從位址 \$sp + 0 載入一個 byte 到 \$t0
+- **不做 sign extend**，左邊補 0
+
+範例:
+
+```
+記憶體位址 $sp → 00000000000000000000000110000000
+
+執行 lbu $t0, 0($sp) 後:
+$t0 = 00000000000000000000000010000000
+```
+
+**注意**: MIPS 沒有 store byte unsigned (sbu) 指令，因為存入時只會存最右邊的 byte，signed 和 unsigned 的結果相同。
+
+### 其他類似指令
+
+**lh (load halfword)**: 載入半字 (16 bits) 並 sign extend 到 32 bits
+
+```python
+lh rt, offset(rs)
+```
+
+**lhu (load halfword unsigned)**: 載入半字但不 sign extend，左邊補 0
+
+```python
+lhu rt, offset(rs)
+```
+
+**sh (store halfword)**: 存入半字，只存最右邊 16 bits
+
+```python
+sh rt, offset(rs)
+```
+
+**注意**: MIPS 沒有 store halfword unsigned 指令。
+
+## 32-bit 常數
+
+大部分常數都很小 (16 bit 範圍是 $-2^{15}$ ~ $2^{15} - 1$)，但有時我們需要 **32-bit 常數**。由於一個 MIPS 指令只有 32 bits，無法在指令中直接放入 32-bit 常數 (需要留空間給 opcode)。
+
+解決方法: **結合 lui 和 ori 指令**
+
+### lui (load upper immediate)
+
+```python
+lui rt, constant
+```
+
+- 將 16-bit 常數複製到 rt 的**左邊 16 bits**
+- 清除 rt 的右邊 16 bits 為 0
+
+### 範例: 設定 \$s0 為 4,000,000
+
+$4000000_{10} = 0000\ 0000\ 0011\ 1101\ 0000\ 1001\ 0000\ 0000_2$
+
+左邊 16 bits: $0000\ 0000\ 0011\ 1101_2 = 61_{10}$
+右邊 16 bits: $0000\ 1001\ 0000\ 0000_2 = 2304_{10}$
+
+```python
+lui $s0, 61        # $s0 = 0000 0000 0011 1101 0000 0000 0000 0000
+ori $s0, $s0, 2304 # $s0 = 0000 0000 0011 1101 0000 1001 0000 0000
+```
+
+## 分支定址 (Branch Addressing)
+
+Branch 指令需要指定:
+- Opcode
+- 兩個暫存器 (rs, rt)
+- 目標位址 (target address)
+
+| op | rs | rt | Address (=Offset/4) |
+|---|---|---|---|
+| 6 bits | 5 bits | 5 bits | 16 bits |
+
+### PC-relative addressing
+
+大部分分支目標都在分支指令**附近** (forward 或 backward)，因此使用 **PC-relative addressing**:
+
+- 位址永遠是 4 的倍數 ⇒ 實際存 offset/4
+- **Target address = PC + (Address × 4)**
+- PC 已經先遞增 4 (指向下一條指令)
+
+### 範例
+
+假設有以下指令:
+
+```
+位址     指令
+8        beq $t0, $t1, ???
+12       ...
+16       ...
+20       (目標位址)
+```
+
+若 beq 要跳到位址 20 (當 \$t0 == \$t1):
+- PC = 8 + 4 = 12 (beq 執行時 PC 已指向下一條指令)
+- Target address = 20
+- 20 = 12 + (Address × 4)
+- Address = 2
+
+所以 beq 的機器碼為:
+
+```
+000100 01000 01001 0000 0000 0000 0010
+  op    $t0   $t1        Address = 2
+```
+
+### 另一個範例
+
+假設 \$s0 == \$t1，找出 (1) target address 和 (2) 下一條執行的指令:
+
+```
+位址     指令
+4        beq $s0, $t1, 2
+8        Inst1
+12       Inst2
+16       Inst3
+20       Inst4
+```
+
+- Target address = PC + (Address × 4) = 8 + 2 × 4 = 16
+- 下一條執行的指令: Inst3
+
+## 跳躍定址 (Jump Addressing)
+
+Jump (j 和 jal) 的目標可以在 text segment 的**任何位置**，需要更大的位址空間，因此在指令中編碼完整位址。
+
+| op | address |
+|---|---|
+| 6 bits | 26 bits |
+
+### (Pseudo)Direct jump addressing
+
+**Target address = PC[31:28] : (address × 4)**
+
+- 取 PC 的最高 4 bits (PC[31:28])
+- 後面接上 address × 4 (26 bits 左移 2 bits 變成 28 bits)
+- 組合成 32 bits 的目標位址
+
+### 範例
+
+假設 PC = $40000000_{16}$，有以下 jump 指令:
+
+```
+000010 00 00000000 00000010 00000001
+  op              address
+```
+
+- Address in instruction = $0x000201_{16}$
+- Target Address = PC[31:28] + 0201₁₆ × 4 = 0100₂ : (0000 0010 0000 0001 00₂) = $0x40000804_{16}$
+
+### 目標定址範例
+
+假設 PC[31:28] = 0000，Loop 位於位址 80000:
+
+```
+位址   指令               op  rs  rt  rd  shamt  funct  或 address
+80000  Loop: sll $t1,$s3,2   0   0  19   9   4    0
+80004  add $t1,$t1,$s6       0   9  22   9   0   32
+80008  lw $t0,0($t1)        35   9   8        0
+80012  bne $t0,$s5,Exit      5   8  21              (1)=???
+80016  addi $s3,$s3,1        8  19  19              1
+80020  j Loop                2                   (2)=???
+80024  Exit: ...
+```
+
+(1) bne 的 Address 欄位:
+- 從位址 80012，若 \$t0 ≠ \$s5，跳到 Exit (80024)
+- PC = 80012 + 4 = 80016
+- 80024 = 80016 + (Address × 4)
+- Address = 2
+
+(2) j 的 address 欄位:
+- 從位址 80020，跳到 Loop (80000)
+- Target = 0000 : (address × 4)
+- 80000 = 0x00013880
+- address = 0x00013880 >> 2 = 0x4E20 = 20000
+
+## Quiz
+
+### 條件分支的範圍
+
+條件分支 (beq, bne) 在 MIPS 中的範圍是多少 (K=1024)?
+
+1. Address between 0 and 64K -1
+2. Address between 0 and 256K -1
+3. Address up to about 32K before the branch to about 32K after
+4. Addresses up to about 128K before the branch to about 128K after
+
+**答案: 4**
+
+- 16 bits address 欄位，範圍 $-2^{15}$ ~ $2^{15} - 1$
+- 實際位址範圍 = address × 4 = $2^{16} \times 4 = 2^{18}$ = 256K
+- 可以向前或向後跳約 128K
+
+### Jump 指令的範圍
+
+Jump and jump-and-link (j, jal) 在 MIPS 中的範圍是多少?
+
+1. Address between 0 and 64M -1
+2. Address between 0 and 256M -1
+3. Address up to about 32M before the branch to about 32M after
+4. Addresses up to about 128M before the branch to about 128M after
+5. Anywhere within a block of 64M addresses where the PC supplies the upper 6 bits
+6. Anywhere within a block of 256M addresses where the PC supplies the upper 4 bits
+
+**答案: 6**
+
+- 26 bits address 欄位，address × 4 = $2^{26} \times 4 = 2^{28}$ = 256MB
+- PC 提供最高 4 bits，所以可以跳到同一個 256M block 內的任何位置
+
+## 分支過遠 (Branching Far Away)
+
+若分支目標**過遠**，無法用 16-bit offset 編碼，assembler 會:
+1. 插入一個無條件 jump 到分支目標
+2. **反轉條件**，讓分支決定是否跳過這個 jump
+
+### 範例
+
+原始程式碼:
+
+```python
+beq $s0, $s1, L1
+```
+
+若 L1 只能用 16bit address 表示，assembler 轉換為:
+
+```python
+bne $s0, $s1, L2   # 反轉條件
+j   L1             # j 可以跳更遠 (26 bit address)
+L2: ...
+```
+
+## 指令格式總結
+
+MIPS 有三種指令格式:
+
+### R-format
+
+用於: add, and, or, sll, srl, ...
+
+| op | rs | rt | rd | shamt | funct |
+|---|---|---|---|---|---|
+| 6 bits | 5 bits | 5 bits | 5 bits | 5 bits | 6 bits |
+
+### I-format
+
+用於: beq, bne, addi, lw, sw, ...
+
+| op | rs | rt | constant or address |
+|---|---|---|---|
+| 6 bits | 5 bits | 5 bits | 16 bits |
+
+### J-format
+
+用於: j, jal
+
+| op | target address |
+|---|---|
+| 6 bits | 26 bits |
+
+## 定址模式總結
+
+### 1. Immediate addressing
+
+運算元是指令中的**常數**。
+
+```python
+addi $s1, $s0, 1   # $s1 = $s0 + 1
+```
+
+### 2. Register addressing
+
+運算元是**暫存器**。
+
+```python
+add $s1, $s0, $s2  # $s1 = $s0 + $s2
+```
+
+### 3. Base or displacement addressing
+
+運算元在**記憶體位置**，位址 = base register + offset。
+
+```python
+lw $t0, 32($s3)    # $t0 = Memory[$s3 + 32]
+```
+
+### 4. PC-relative addressing
+
+分支位址是 **PC + constant** 的總和。
+
+```python
+beq $s0, $s1, L1   # if ($s0 == $s1) PC = PC + 4 + (offset × 4)
+```
+
+### 5. (Pseudo)direct addressing
+
+Jump 位址是指令中的 **26 bit address + PC 的最高 4 bits**。
+
+```python
+j Label            # PC = PC[31:28] : (address × 4)
+```
+
+## 解碼機器碼
+
+### 範例: 解碼 00af8020₁₆
+
+將 hex 轉換為 binary:
+
+```
+00af8020₁₆ = 0000 0000 1010 1111 1000 0000 0010 0000₂
+```
+
+分割欄位 (R-format):
+
+| op | rs | rt | rd | shamt | funct |
+|---|---|---|---|---|---|
+| 000000 | 00101 | 01111 | 10000 | 00000 | 100000 |
+| 0 | 5 | 15 | 16 | 0 | 32 |
+
+- op = 0, funct = 32 ⇒ add 指令
+- rs = 5 ⇒ \$a1
+- rt = 15 ⇒ \$t7
+- rd = 16 ⇒ \$s0
+
+**組合語言**: `add $s0, $a1, $t7`
+
+## Assembler Pseudoinstructions
+
+大部分 assembler 指令與機器指令**一對一**對應，但有些有用的指令可能缺少，可以用其他指令組合達成。
+
+**Pseudoinstructions (虛擬指令)**: assembler 提供的便利指令，會在執行時轉換為實際指令。
+
+### 常見 Pseudoinstructions
+
+**move**: 複製暫存器內容
+
+```python
+move $t0, $t1   →   add $t0, $zero, $t1
+```
+
+**blt (branch less than)**: 小於則分支
+
+```python
+blt $t0, $t1, L   →   slt $at, $t0, $t1
+                      bne $at, $zero, L
+```
+
+**\$at (register 1)** 保留給 assembler 使用。
+
+**neg**: 取負數
+
+```python
+neg $t0, $t0   →   sub $t0, $zero, $t0
+```
+
+**not**: 位元反轉
+
+```python
+not $t0, $t1   →   nor $t0, $t1, $zero
+```
+
+**li (load immediate)**: 載入立即值到暫存器
+
+```python
+li $t0, 0x3BF20   →   lui $t0, 0x0003
+                      ori $t0, $t0, 0xBF20
+```
+
+**sge (set greater or equal)**, **sgt (set greater than)**, **ble**, **bge**, **bgt** 等也都是 pseudoinstructions。
+
+可以在 **MARS MIPS Simulator** 中測試這些指令的實際轉換。
+
+## C Sort 範例
+
+以下用 C bubble sort 函數展示如何使用組合語言指令。
+
+### Swap 程序 (leaf)
+
+C 程式:
+
+```c
+void swap(int v[], int k)
+{
+    int temp;
+    temp = v[k];
+    v[k] = v[k+1];
+    v[k+1] = temp;
+}
+```
+
+假設 v 在 \$a0，k 在 \$a1，temp 在 \$t0:
+
+```python
+swap:
+    sll $t1, $a1, 2    # $t1 = k * 4 (k 是 index)
+    add $t1, $a0, $t1  # $t1 = v + (k*4) = address of v[k]
+    lw  $t0, 0($t1)    # $t0 (temp) = v[k]
+    lw  $t2, 4($t1)    # $t2 = v[k+1]
+    sw  $t2, 0($t1)    # v[k] = $t2 (v[k+1])
+    sw  $t0, 4($t1)    # v[k+1] = $t0 (temp)
+    jr  $ra            # return to calling routine
+```
+
+### Sort 程序 (non-leaf)
+
+C 程式:
+
+```c
+void sort(int v[], int n)
+{
+    int i, j;
+    for (i = 0; i < n; i += 1) {
+        for (j = i - 1;
+             j >= 0 && v[j] > v[j + 1];
+             j -= 1) {
+            swap(v, j);
+        }
+    }
+}
+```
+
+假設 v 在 \$a0，n 在 \$a1，i 在 \$s0，j 在 \$s1:
+
+```python
+sort:
+    addi $sp, $sp, -20     # 保存 5 個暫存器
+    sw   $ra, 16($sp)      # 保存 $ra (因為會呼叫 swap)
+    sw   $s3, 12($sp)      # 保存 $s3
+    sw   $s2, 8($sp)       # 保存 $s2
+    sw   $s1, 4($sp)       # 保存 $s1
+    sw   $s0, 0($sp)       # 保存 $s0
+
+    move $s2, $a0          # save $a0 into $s2 (v)
+    move $s3, $a1          # save $a1 into $s3 (n)
+    move $s0, $zero        # i = 0
+
+for1tst:
+    slt  $t0, $s0, $s3     # $t0 = 0 if $s0 ≥ $s3 (i ≥ n)
+    beq  $t0, $zero, exit1 # go to exit1 if $s0 ≥ $s3 (i ≥ n)
+    addi $s1, $s0, -1      # j = i - 1
+
+for2tst:
+    slti $t0, $s1, 0       # $t0 = 1 if $s1 < 0 (j < 0)
+    bne  $t0, $zero, exit2 # go to exit2 if $s1 < 0 (j < 0)
+    sll  $t1, $s1, 2       # $t1 = j * 4
+    add  $t2, $s2, $t1     # $t2 = v + (j * 4)
+    lw   $t3, 0($t2)       # $t3 = v[j]
+    lw   $t4, 4($t2)       # $t4 = v[j + 1]
+    slt  $t0, $t4, $t3     # $t0 = 0 if $t4 ≥ $t3
+    beq  $t0, $zero, exit2 # go to exit2 if $t4 ≥ $t3
+
+    move $a0, $s2          # 1st param of swap is v (old $a0)
+    move $a1, $s1          # 2nd param of swap is j
+    jal  swap              # call swap procedure
+
+    addi $s1, $s1, -1      # j -= 1
+    j    for2tst           # jump to test of inner loop
+
+exit2:
+    addi $s0, $s0, 1       # i += 1
+    j    for1tst           # jump to test of outer loop
+
+exit1:
+    lw   $s0, 0($sp)       # restore $s0 from stack
+    lw   $s1, 4($sp)       # restore $s1 from stack
+    lw   $s2, 8($sp)       # restore $s2 from stack
+    lw   $s3, 12($sp)      # restore $s3 from stack
+    lw   $ra, 16($sp)      # restore $ra from stack
+    addi $sp, $sp, 20      # restore stack pointer
+    jr   $ra               # return to calling routine
+```
+
+## 編譯器優化的效果
+
+以 gcc 編譯 Pentium 4 (Linux) 為例，比較不同優化等級的效能:
+
+| 優化等級 | 相對效能 | 指令數 | Clock Cycles | CPI |
+|---|---|---|---|---|
+| none | 1.0 | ~115000 | ~160000 | ~1.4 |
+| O1 | ~2.4 | ~37000 | ~65000 | ~1.8 |
+| O2 | ~2.4 | ~41000 | ~65000 | ~1.6 |
+| O3 | ~2.4 | ~44000 | ~62000 | ~1.4 |
+
+觀察:
+- **Instruction count** 和 **CPI** 單獨來看都不是好的效能指標
+- 優化後指令數減少，但 CPI 可能增加
+- 真正重要的是 **Clock Cycles** (或執行時間)
+
+## Fallacies (謬誤)
+
+### 謬誤 1: Powerful instruction ⇒ higher performance
+
+- 複雜指令需要較少的指令數
+- 但複雜指令**難以實作**，可能拖慢所有指令 (包括簡單的)
+- 編譯器擅長用簡單指令產生快速程式碼
+
+### 謬誤 2: 使用組合語言可以獲得高效能
+
+- 現代編譯器更擅長處理現代處理器
+- 更多程式碼行數 ⇒ 更多錯誤和更低的生產力
+
+### 謬誤 3: 向後相容 ⇒ 指令集不會改變
+
+- 但指令集會**累積**更多指令
+- 例如 x86 指令集從 1978 年的 100 多條增加到 2008 年的 900 多條
+
+## Pitfalls (陷阱)
+
+### 陷阱: Sequential words are not at sequential addresses
+
+記憶體中連續的 words **不在連續的位址**，需要以 4 遞增，而非 1。
+
+範例: `g = h + A[8];`，其中 g 在 \$s1，h 在 \$s2，A 的 base address 在 \$s3:
+
+```python
+lw  $t0, 32($s3)   # load word，index 8 需要 offset 32 (8×4)
+add $s1, $s2, $t0
+```
+
+| 位址 | 內容 |
+|---|---|
+| X | A[0] |
+| X+4 | A[1] |
+| X+8 | A[2] |
+| X+12 | A[3] |
+| ... | ... |
+| X+32 | A[8] |
+
+## 結語
+
+### 設計原則
+
+1. **Simplicity favors regularity**
+2. **Smaller is faster**
+3. **Make the common case fast**
+4. **Good design demands good compromises**
+
+### 軟硬體層次
+
+- 編譯器 (Compiler)
+- 組譯器 (Assembler)
+- 硬體 (Hardware)
+
+### MIPS 是典型的 RISC ISA
+
+相對於 x86 等 CISC ISA。
+
+### MIPS 指令執行頻率
+
+根據 SPEC2006 Int 基準測試:
+
+| 指令類型 | MIPS 範例 | SPEC2006 Int | SPEC2006 FP |
+|---|---|---|---|
+| Arithmetic | add, sub, addi | 16% | 48% |
+| Data transfer | lw, sw, lb, lbu, lh, lhu, sb, lui | 35% | 36% |
+| Logical | and, or, nor, andi, ori, sll, srl | 12% | 4% |
+| Cond. Branch | beq, bne, slt, slti, sltiu | 34% | 8% |
+| Jump | j, jr, jal | 2% | 0% |
+
+- Data transfer (load/store) 和 conditional branch 占了大部分
+- 這也說明為什麼要 make the common case fast
