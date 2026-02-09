@@ -13,3 +13,5 @@ tags:
 使用課本: Computer Organization And Design 5th Edition
 
 ## [Ch1 Abstractions and Technology](/2021/07/03/computer-organization-ch-1)
+
+## [Ch2 Instructions: Language of the Computer](/2021/07/04/computer-organization-ch-2)
