@@ -15,3 +15,5 @@ tags:
 ## [Ch1 Abstractions and Technology](/2021/07/03/computer-organization-ch-1)
 
 ## [Ch2 Instructions: Language of the Computer](/2021/07/04/computer-organization-ch-2)
+
+## [Ch3 Arithmetic for Computers](/2021/07/05/computer-organization-ch-3)
