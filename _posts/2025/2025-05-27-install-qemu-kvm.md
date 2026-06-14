@@ -13,19 +13,19 @@ QEMU/KVM，簡稱 Quick Emulator，是一套開源的虛擬化解決方案，結
 
 ## 安裝 QEMU/KVM
 
-開啟 libvirtd 虛擬化服務
-
-```non
-$ sudo systemctl enable libvirtd.service
-$ sudo systemctl start libvirtd.service
-```
-
 安裝 QEMU/KVM 相關套件，重新開機
 
 ```non
 $ sudo apt update
 $ sudo apt install qemu-kvm virt-manager bridge-utils
 $ sudo reboot now
+```
+
+開啟 libvirtd 虛擬化服務
+
+```non
+$ sudo systemctl enable libvirtd.service
+$ sudo systemctl start libvirtd.service
 ```
 
 為了讓你的使用者帳號可以不使用 root 權限就操作虛擬機，你必須將使用者加入這些授權群組：
